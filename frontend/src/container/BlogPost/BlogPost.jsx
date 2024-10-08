@@ -18,6 +18,10 @@ class BlogPost extends Component {
         //         })
         //     })
 
+        this.getPostApi()
+    }
+
+    getPostApi = () => { 
         axios.get('http://localhost:3000/posts')
         . then((res) => { 
             this.setState({
@@ -26,12 +30,20 @@ class BlogPost extends Component {
         })
     }
 
+    handleRevome = (iddata) => { 
+        axios.delete(`http://localhost:3000/posts//${iddata}`)
+        . then((res) => {  
+            console.log(res);
+            this.getPostApi()
+        })
+    }
+
     render(){
         return(
             <Fragment>
                 {
                     this.state.post.map(post => {
-                        return <Post key={post.id} title={post.title} desc={post.body}/>
+                        return <Post key={post.id} data={post} remove={this.handleRevome} />
                     })
                 }
                 
