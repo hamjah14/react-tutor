@@ -11,7 +11,7 @@ const Post = (props) => {
                 <div className="desc">{props.data.body}</div>
             </div>
             <div className="action">
-                <button className="addButt">Add</button>
+                <button className="editButt" onClick={() => props.edit(props.data)}>Edit</button>
                 <button className="removeButt" onClick={() => props.remove(props.data.id)}>Remove</button>
             </div>
         </div>
