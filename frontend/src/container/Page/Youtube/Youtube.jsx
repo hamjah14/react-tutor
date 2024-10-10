@@ -32,8 +32,8 @@ class Youtube extends Component {
                 title="Memasak bersama mami toko"
                 desc="9292x ditonton, 5 bulan yang lalu"/>
 
-            <YouTubeComp 
-                img=""
+            <YouTubeComp  
+                img="https://applse.consult-indonesia.com/public/assets/images/logo/logo-sm-n.jpg"
                 title="The most funny one piece"
                 desc="6.6jt kali ditonton. 1 tahun yang lalu"/> 
         </div>

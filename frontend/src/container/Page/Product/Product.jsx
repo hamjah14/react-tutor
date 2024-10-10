@@ -30,7 +30,7 @@ class Product extends Component{
                         <img src="" alt="" />
                     </div>
                     <div className="troley">
-                        <i class="fa-solid fa-cart-shopping"></i>
+                        <i className="fa-solid fa-cart-shopping"></i>
                         <div className="count">{this.state.order}</div>
                     </div>
                 </div>
