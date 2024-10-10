@@ -1,8 +1,13 @@
+// libraries
 import React, {Component, Fragment} from "react";
-import './BlogPost.css';
-import Post from '../../component/Post/Post';
+import Post from '../../../component/Post/Post';
 import axios from 'axios';
 
+// component
+import DetailPost from '../BlogPost/DetailPost'
+
+// style
+import './BlogPost.css';
 
 class BlogPost extends Component {
     state = {
@@ -122,6 +127,9 @@ class BlogPost extends Component {
     render(){
         return(
             <Fragment>
+                <p>Blog Post</p>
+                <hr></hr>
+                
                 <div className="form-add-post"> 
                     {/* <form onSubmit={this.handleSubmit}> */} 
                         <div>

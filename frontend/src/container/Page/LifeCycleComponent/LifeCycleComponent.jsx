@@ -62,6 +62,9 @@ class LifeCycleComponent extends Component {
 
         return(
             <div>
+                <p>Life Cycle</p>
+                <hr></hr>
+                
                 <button className="btn" onClick={this.changeCount}> Component Button {this.state.count}</button>
             </div>
         )
