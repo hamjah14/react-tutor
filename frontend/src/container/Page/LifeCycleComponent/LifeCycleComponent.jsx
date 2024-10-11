@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 
 // style
 import "./LifeCycleComponent.css"
-
-
+ 
 class LifeCycleComponent extends Component {
     constructor (props) {
         super(props);

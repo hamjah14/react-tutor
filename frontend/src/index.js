@@ -10,35 +10,8 @@ import { Provider } from 'react-redux';
 // import StateFullComponent from './container/StateFullComponent';
 // import YouTubeComp from './component/YouTubeComp/YouTubeComp';
 import Home from './container/Home/Home';
-  
-const initialState = {
-  totalOrder : 0
-}
-
-// reducer
-const rootReducer = (state = initialState, action) => {
-  switch(action.type){
-    case 'PLUS_ORDER':
-        return {
-            ...state, 
-            totalOrder: state.totalOrder + 1 
-        }
-    case 'MINUS_ORDER':
-        let totalOrder = 0
- 
-        if(state.totalOrder > 0 ){
-          totalOrder = state.totalOrder - 1
-        }
-
-        return {
-            ...state, 
-            totalOrder: totalOrder
-        } 
-    default:
-    return state;
-  }
-}
-
+import rootReducer from './redux/reducer/globalReducer';
+   
 // store
 const storeRedux = createStore(rootReducer);
  

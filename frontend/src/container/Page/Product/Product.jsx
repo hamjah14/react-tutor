@@ -8,17 +8,7 @@ import CardProduct from "./CardProduct";
 // stayle
 import './Product.css';
 
-class Product extends Component{
-    // state = {
-    //     order: 4,
-    //     name: "hamjah"
-    // }
-  
-    // handleCounterChange = (newValue) =>{
-    //     this.setState({
-    //         order : newValue
-    //     })
-    // }
+class Product extends Component{ 
 
     render(){
         return(
