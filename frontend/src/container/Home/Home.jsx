@@ -1,6 +1,6 @@
 // libraries
-import React, {Component, Fragment} from "react"; 
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import React, {Component, Fragment, createContext} from "react"; 
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom"; 
 
 // pages
 import BlogPost from "../Page/BlogPost/BlogPost";
@@ -12,43 +12,40 @@ import LifeCycleComponent from "../Page/LifeCycleComponent/LifeCycleComponent";
 // style
 import './Home.css';
 
+// context
+import GlobalProvider from "../../context/GlobalContext";
+
 class Home extends Component {
     state = {
-        showComponent: true
+        showComponent: true, 
     }
-    
-    componentDidMount(){ 
-        // setTimeout(()=>{
-        //     this.setState({
-        //         showComponent : false
-        //     }) 
-        // }, 15000)
-    }
-
+      
     render(){
         return (
-            <BrowserRouter>
-                <div className="navigation">
-                    <Link to="/*">Blog Post</Link> 
-                    <Link to="/product">Product</Link>
-                    <Link to="/youtube">Youtube</Link>
-                    {
-                        this.state.showComponent ? <Link to="/lifecycle">Life Cycle Component</Link> : null
-                    }  
-                </div>
-                
-                <Routes>
-                    <Route path="/*" element={<BlogPost />} />
-                    <Route path="/detail-post/:id" element={<DetailPost />} />
+            <BrowserRouter> 
+                <Fragment>
+                    <div className="navigation">
+                        <Link to="/*">Blog Post</Link> 
+                        <Link to="/product">Product</Link>
+                        <Link to="/youtube">Youtube</Link>
+                        {
+                            this.state.showComponent ? <Link to="/lifecycle">Life Cycle Component</Link> : null
+                        }  
+                    </div>
+                    
+                    <Routes>
+                        <Route path="/*" element={<BlogPost />} />
+                        <Route path="/detail-post/:id" element={<DetailPost />} />
 
 
-                    <Route path="/product" element={<Product />} />
-                    <Route path="/youtube" element={<Youtube />} /> 
-                    <Route path="/lifecycle" element={<LifeCycleComponent />} />  
-                </Routes>
+                        <Route path="/product" element={<Product />} />
+                        <Route path="/youtube" element={<Youtube />} /> 
+                        <Route path="/lifecycle" element={<LifeCycleComponent />} />  
+                    </Routes>
+                </Fragment>  
             </BrowserRouter>
         )  
     }
 }
 
-export default Home;
+export default GlobalProvider(Home);

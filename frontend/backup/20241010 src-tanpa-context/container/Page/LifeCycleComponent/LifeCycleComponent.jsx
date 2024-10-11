@@ -1,9 +1,6 @@
 // libraries
-import React, {Component} from "react"; 
-import { RootContext } from "../../Home/Home";
-
-// context
-import { GlobalConsumer } from "../../../context/GlobalContext";
+import React, {Component} from "react";
+import { connect } from "react-redux";
 
 // style
 import "./LifeCycleComponent.css"
@@ -68,7 +65,7 @@ class LifeCycleComponent extends Component {
     render(){
         console.log("render");
 
-        return( 
+        return(
             <div>
                 <p>Life Cycle</p>
                 <hr></hr>
@@ -76,12 +73,19 @@ class LifeCycleComponent extends Component {
                 <button className="btn" onClick={this.changeCount}> Component Button {this.state.count}</button>
                 <br />
 
+                
                 <p>Total Order</p>
-                <hr></hr> 
-                <p>{this.props.state.totalOrder}</p>
-            </div>  
+                <hr></hr>
+                {this.props.order}
+            </div>
         )
     }
 }
-  
-export default GlobalConsumer(LifeCycleComponent);
+
+const globalStore = (state) => {
+    return {
+        order: state.totalOrder
+    }
+}
+
+export default connect(globalStore) (LifeCycleComponent);

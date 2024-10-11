@@ -1,12 +1,9 @@
 // libraries
-import React, {Component, Fragment} from "react"; 
+import React, {Component, Fragment} from "react";
+import { connect } from "react-redux";
 
 // component
-import { RootContext } from "../../Home/Home";
 import CardProduct from "./CardProduct";
-
-// context
-import { GlobalConsumer } from "../../../context/GlobalContext";
 
 // stayle
 import './Product.css';
@@ -14,7 +11,7 @@ import './Product.css';
 class Product extends Component{ 
 
     render(){
-        return( 
+        return(
             <Fragment>
                 <p>Product</p>
                 <hr></hr>
@@ -25,14 +22,20 @@ class Product extends Component{
                     </div>
                     <div className="troley">
                         <i className="fa-solid fa-cart-shopping"></i>
-                        <div className="count">{this.props.state.totalOrder}</div>
+                        <div className="count">{this.props.order}</div>
                     </div>
                 </div>
 
                 <CardProduct />
-            </Fragment> 
+            </Fragment>
         )
     }
 }
- 
-export default GlobalConsumer(Product);
+
+const mapStateToProps = (state) => {
+    return {
+        order: state.totalOrder
+    }
+}
+
+export default connect(mapStateToProps) (Product);
