@@ -1,6 +1,5 @@
 // libraries
 import React, {Component, Fragment} from "react";
-import { connect } from "react-redux";
 
 // component
 import CardProduct from "./CardProduct";
@@ -9,16 +8,16 @@ import CardProduct from "./CardProduct";
 import './Product.css';
 
 class Product extends Component{
-    // state = {
-    //     order: 4,
-    //     name: "hamjah"
-    // }
+    state = {
+        order: 4,
+        name: "hamjah"
+    }
   
-    // handleCounterChange = (newValue) =>{
-    //     this.setState({
-    //         order : newValue
-    //     })
-    // }
+    handleCounterChange = (newValue) =>{
+        this.setState({
+            order : newValue
+        })
+    }
 
     render(){
         return(
@@ -32,20 +31,14 @@ class Product extends Component{
                     </div>
                     <div className="troley">
                         <i className="fa-solid fa-cart-shopping"></i>
-                        <div className="count">{this.props.order}</div>
+                        <div className="count">{this.state.order}</div>
                     </div>
                 </div>
 
-                <CardProduct />
+                <CardProduct onCounterChange = {(value) => this.handleCounterChange(value)}/>
             </Fragment>
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        order: state.totalOrder
-    }
-}
-
-export default connect(mapStateToProps) (Product);
+export default Product;

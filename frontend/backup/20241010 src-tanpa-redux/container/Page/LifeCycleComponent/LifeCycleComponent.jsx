@@ -1,11 +1,5 @@
-// libraries
 import React, {Component} from "react";
-import { connect } from "react-redux";
-
-// style
 import "./LifeCycleComponent.css"
-
-
 class LifeCycleComponent extends Component {
     constructor (props) {
         super(props);
@@ -22,13 +16,13 @@ class LifeCycleComponent extends Component {
     }
 
     componentDidMount(){
-        // console.log("componentDidMount"); 
+        console.log("componentDidMount"); 
 
-        setTimeout(()=>{
-            this.setState({
-                count:2
-            })
-        }, 3000) 
+        // setTimeout(()=>{
+        //     this.setState({
+        //         count:2
+        //     })
+        // }, 3000) 
     }
  
     shouldComponentUpdate(nextProps, newState){
@@ -72,21 +66,9 @@ class LifeCycleComponent extends Component {
                 <hr></hr>
                 
                 <button className="btn" onClick={this.changeCount}> Component Button {this.state.count}</button>
-                <br />
-
-                
-                <p>Total Order</p>
-                <hr></hr>
-                {this.props.order}
             </div>
         )
     }
 }
 
-const globalStore = (state) => {
-    return {
-        order: state.totalOrder
-    }
-}
-
-export default connect(globalStore) (LifeCycleComponent);
+export default LifeCycleComponent;
