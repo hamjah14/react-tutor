@@ -36,13 +36,20 @@ class BlogPost extends Component {
     }
 
     handleSavePostToApi = (data) => {
-        axios.post(`http://localhost:3000/posts/`, data)
-        .then((res) => { 
-            this.handleFormChangeClear()
-            this.getPostApi()
-        }, (err) => {
-            console.log(err)
-        }) 
+        API.postBlogPost(data).then(
+            resul => {
+                this.handleFormChangeClear()
+                this.getPostApi()
+            }
+        )
+
+        // axios.post(`http://localhost:3000/posts/`, data)
+        // .then((res) => { 
+        //     this.handleFormChangeClear()
+        //     this.getPostApi()
+        // }, (err) => {
+        //     console.log(err)
+        // }) 
     }
 
     handleEditDataFromApi = (data) => {   
