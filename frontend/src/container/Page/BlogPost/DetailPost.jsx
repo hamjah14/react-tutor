@@ -10,7 +10,7 @@ const DetailPost = (props) => {
    
   useEffect(() => { 
         if(postId.id !== undefined){  
-            axios.get(`https://jsonplaceholder.typicode.com/comments/${postId.id}`)
+            axios.get(`http://localhost:3000/posts/${postId.id}`)
             .then((res) => { 
                 setPost(res.data)
             }, (err) => {
@@ -18,7 +18,6 @@ const DetailPost = (props) => {
             })   
         }
 
-        console.log('post 2', post.title)
   }, []);
  
   return ( 
