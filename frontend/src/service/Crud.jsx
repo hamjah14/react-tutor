@@ -2,10 +2,26 @@
 import axios from 'axios'
 
 import { RootPath } from './Config'; 
-
-const Get = (path, online, data) => { 
+ 
+const Post = (path, online, data) => {
     let url = online ? online : `${RootPath}/${path}`;
-    url = data ? `${url}/${data}` : `${url}`
+
+    const promise = new Promise((resolve, reject) => {
+        axios.post(url, data)
+        .then((res) => { 
+            resolve(res) 
+        }, (err) => {
+            console.log('err ', err)
+            reject(err)
+        })  
+    })
+
+    return promise;
+}
+
+const Get = (path, online, id) => { 
+    let url = online ? online : `${RootPath}/${path}`;
+    url = id ? `${url}/${id}` : `${url}`
  
     const promise = new Promise((resolve, reject) => {
         axios.get(url)
@@ -19,19 +35,35 @@ const Get = (path, online, data) => {
     return promise
 }
 
-const Post = (path, online, data) => {
+const Put = (path, online, data) => {
     let url = online ? online : `${RootPath}/${path}`;
 
-    const promise = new Promise((resolve, reject) => {
-        axios.post(url, data)
-        .then((res) => { 
-            resolve(res) 
+    const promise = new Promise((resolve, reject) => { 
+        axios.put(`${url}`, data)
+        .then((res) => {   
+            resolve(res)
         }, (err) => {
             reject(err)
-        })  
+        }) 
+
     })
 
     return promise;
 }
 
-export { Get, Post }
+const Delete = (path, online) => {
+    let url = online ? online : `${RootPath}/${path}`;
+ 
+    const promise = new Promise((resolve, reject) => {
+        axios.delete(`${url}`)
+        .then((res) => {  
+            resolve(res) 
+        }, (err) => {
+            reject(err)
+        }) 
+    })
+
+    return promise;
+}
+
+export { Post, Get, Put, Delete }

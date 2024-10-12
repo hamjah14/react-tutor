@@ -37,7 +37,7 @@ const Comment = (props) => {
 
     return ( 
         <div>
-            <p> {komen.body}</p>  
+            <p> { komen.body }</p>  
         </div>
     )
 }

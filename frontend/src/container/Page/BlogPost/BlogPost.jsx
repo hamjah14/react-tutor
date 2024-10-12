@@ -41,15 +41,7 @@ class BlogPost extends Component {
                 this.handleFormChangeClear()
                 this.getPostApi()
             }
-        )
-
-        // axios.post(`http://localhost:3000/posts/`, data)
-        // .then((res) => { 
-        //     this.handleFormChangeClear()
-        //     this.getPostApi()
-        // }, (err) => {
-        //     console.log(err)
-        // }) 
+        ) 
     }
 
     handleEditDataFromApi = (data) => {   
@@ -61,24 +53,21 @@ class BlogPost extends Component {
         }) 
     }
 
-    handleUpdatePostToApi = (data) => {    
-        axios.put(`http://localhost:3000/posts/${data.id}`, data)
-        .then((res) => {   
-            this.handleFormChangeClear()
-            this.getPostApi()
-        }, (err) => {
-            console.log(err)
-        }) 
+    handleUpdatePostToApi = (data) => {  
+        API.putBlogPost(data, data.id).then(
+            result => {
+                this.handleFormChangeClear()
+                this.getPostApi()
+            }
+        ) 
     }
 
     handleRevomePostToApi = (iddata) => { 
-        axios.delete(`http://localhost:3000/posts/${iddata}`)
-        .then((res) => {  
-            console.log(res)
-            this.getPostApi()
-        }, (err) => {
-            console.log(err)
-        }) 
+        API.deleteBlogPost(iddata).then(
+            result => {
+                this.getPostApi()
+            }
+        ) 
     }
  
     handleFormChange = (event) =>{
@@ -125,15 +114,15 @@ class BlogPost extends Component {
     }
  
     // API untuk konponen komen 
-    getKomenById = (id) => {  
-        API.getComment(id).then( 
-            result => { 
-                this.setState({
-                    komen: result
-                })
-            }
-        ) 
-    }
+    // getKomenById = (id) => {  
+    //     API.getComment(id).then( 
+    //         result => { 
+    //             this.setState({
+    //                 komen: result
+    //             })
+    //         }
+    //     ) 
+    // }
   
     componentDidMount(){  
         this.getPostApi() 
