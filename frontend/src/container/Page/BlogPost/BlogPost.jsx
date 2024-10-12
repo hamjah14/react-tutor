@@ -1,17 +1,20 @@
 // libraries
 import React, {Component, Fragment} from "react";
-import Post from '../../../component/Post/Post';
 import axios from 'axios';
 
-// component
-import DetailPost from '../BlogPost/DetailPost'
+// API
+import API from "../../../service/api";
 
+// Component
+import Post from '../../../component/Post/Post'; 
+ 
 // style
 import './BlogPost.css';
 
 class BlogPost extends Component {
     state = {
-        post:[],
+        post:[], 
+        komen:[],
         formBlogPost:{
             id:1,
             title:'',
@@ -21,16 +24,18 @@ class BlogPost extends Component {
         isUpdate: 'Simpan'
     }
  
+    // API untuk komponen post
     getPostApi = () => { 
-        axios.get('http://localhost:3000/posts?_sort=id&_order=desc')
-        .then((res) => {  
-            this.setState({
-                post:res.data
-            })
-        })
+        API.getBlogPost().then(
+            result => {
+                this.setState({
+                    post: result
+                })
+            }
+        )
     }
 
-    handleSaveDataToApi = (data) => {
+    handleSavePostToApi = (data) => {
         axios.post(`http://localhost:3000/posts/`, data)
         .then((res) => { 
             this.handleFormChangeClear()
@@ -49,7 +54,7 @@ class BlogPost extends Component {
         }) 
     }
 
-    handleUpdateDataToApi = (data) => {    
+    handleUpdatePostToApi = (data) => {    
         axios.put(`http://localhost:3000/posts/${data.id}`, data)
         .then((res) => {   
             this.handleFormChangeClear()
@@ -59,7 +64,7 @@ class BlogPost extends Component {
         }) 
     }
 
-    handleRevomeDataToApi = (iddata) => { 
+    handleRevomePostToApi = (iddata) => { 
         axios.delete(`http://localhost:3000/posts/${iddata}`)
         .then((res) => {  
             console.log(res)
@@ -92,10 +97,10 @@ class BlogPost extends Component {
             this.setState({
                 formBlogPost: formBlogPostNew
             }, ()=> {
-                this.handleSaveDataToApi(this.state.formBlogPost)
+                this.handleSavePostToApi(this.state.formBlogPost)
             })
         } else { 
-            this.handleUpdateDataToApi(this.state.formBlogPost)
+            this.handleUpdatePostToApi(this.state.formBlogPost)
         } 
     }
 
@@ -111,17 +116,20 @@ class BlogPost extends Component {
             isUpdate:'Simpan' 
         },()=>{}) 
     }
-
-    componentDidMount(){
-        // fetch('https://jsonplaceholder.typicode.com/posts')
-        //     .then(response => response.json())
-        //     .then(json => {
-        //         this.setState({
-        //             post:json
-        //         })
-        //     })
-
-        this.getPostApi()
+ 
+    // API untuk konponen komen 
+    getKomenById = (id) => {  
+        API.getComment(id).then( 
+            result => { 
+                this.setState({
+                    komen: result
+                })
+            }
+        ) 
+    }
+  
+    componentDidMount(){  
+        this.getPostApi() 
     }
 
     render(){
@@ -152,8 +160,8 @@ class BlogPost extends Component {
                 <br />
 
                 {
-                    this.state.post.map(post => {
-                        return <Post key={post.id} data={post} edit={this.handleEditDataFromApi} remove={this.handleRevomeDataToApi} />
+                    this.state.post.map(post => {     
+                        return <Post key={post.id} data={post} edit={this.handleEditDataFromApi} remove={this.handleRevomePostToApi} />
                     })
                 }
                 

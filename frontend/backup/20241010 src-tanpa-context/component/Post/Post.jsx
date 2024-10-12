@@ -1,5 +1,4 @@
-import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import React from "react"; 
 import { useNavigate } from "react-router-dom"; 
 
 const Post = (props) => {

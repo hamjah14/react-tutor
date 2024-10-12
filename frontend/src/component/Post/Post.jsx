@@ -1,6 +1,9 @@
-import React from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+// libraries
+import React from "react"; 
 import { useNavigate } from "react-router-dom"; 
+
+// component
+import Comment from "../Comment/Comment";
 
 const Post = (props) => {
     const navigate = useNavigate()
@@ -18,6 +21,8 @@ const Post = (props) => {
             <div className="action">
                 <button className="editButt" onClick={() => props.edit(props.data)}>Edit</button>
                 <button className="removeButt" onClick={() => props.remove(props.data.id)}>Remove</button>
+
+                <Comment iddata={props.data.id} />
             </div>
         </div>
     )

@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from "react";  
+import React, { useEffect, useState } from "react";  
 import { useParams } from "react-router-dom"; 
 import axios from "axios";
  
@@ -9,24 +9,20 @@ const DetailPost = (props) => {
   let  postId  = useParams(); 
    
   useEffect(() => { 
-        if(postId.id !== undefined){ 
-            console.log (" disini brooo", postId.id)
-
-            axios.get(`http://localhost:3000/posts/${postId.id}`)
+        if(postId.id !== undefined){  
+            axios.get(`https://jsonplaceholder.typicode.com/comments/${postId.id}`)
             .then((res) => { 
                 setPost(res.data)
             }, (err) => {
                 console.log(err)
-            })  
-
-        }  else {
-            console.log (" disini sistah", postId.id)
+            })   
         }
 
+        console.log('post 2', post.title)
   }, []);
  
   return ( 
-            <div className="p-detail-post">  kkkk
+            <div className="p-detail-post">
                 <p className="detail-title">{post.title}</p> 
                 <hr></hr> 
                 <p className="detail-body">{post.body}</p> 
