@@ -1,10 +1,7 @@
 // libraries
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-
-// config
-import app from './config/firebass';
-
+ 
 // component
 import App from './container/pages/App/index';
 import reportWebVitals from './reportWebVitals'; 

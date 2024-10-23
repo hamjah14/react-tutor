@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+.navigation {
+  background: hsl(71, 89%, 58%);
+  padding: 15px;
+}
+
+.navigation a {
+  padding: 10px 40px;
+  margin: 10px;
+  text-decoration: none;
+  color: #fff;
+  background: #f33;
+  border-radius: 4px;
+}
