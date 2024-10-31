@@ -48,5 +48,12 @@
         background: #115084;
         cursor: pointer;
     }
+    &.disable {
+        background: #5fa9e7;
+        border: 1px solid #5fa9e7;
+        &:hover {
+            cursor: not-allowed;
+        }
+    }
 }
 

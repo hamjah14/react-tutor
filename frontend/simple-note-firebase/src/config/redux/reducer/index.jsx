@@ -3,6 +3,7 @@ import ActionType from "../action/globalActionType"
 const initialState = {
     popup : false,
     isLogin: false, 
+    isLoading: false,
     user: 'Hamjah'
 }
   
@@ -24,7 +25,12 @@ const rootReducer = (state = initialState, action) => {
                 ...state, 
                 user: action.value
             }
-            // console.log(" hiyaaaa ")
+        case ActionType.CHANGE_LOADING:
+            return {
+                ...state, 
+                isLoading: action.value
+            }
+            
         default:
             return state;
     }

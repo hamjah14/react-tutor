@@ -1,18 +1,21 @@
+// libraries
 import React, { Component } from "react"; 
+import { connect } from 'react-redux'
 
 // style
 import './register.css';
+ 
+// component
+import { Button } from "../../../component/atoms/Button/índex";
 
-// config 
-import firebaseApp from  '../../../config/firebase'; 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+// redux
+import { actionRegisterAPI } from "../../../config/redux/action";
    
 class Register extends Component {
-    
-
+     
     state = {
         email: '',
-        password: ''
+        password: '',
     }
 
     handleValueChange = (element) => { 
@@ -22,51 +25,9 @@ class Register extends Component {
     }
     
     handleSubmitForm = () => {
-        let {email, password} = this.state 
-        const auth = getAuth(firebaseApp);
-        console.log(auth) 
+        let {email, password} = this.state  
 
-        
-
-
-        createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            // Signed up 
-            const user = userCredential.user;
-            // ...
-
-            
-                console.log('ok ', user);
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
-            
-                console.log('erro ', errorMessage);
-        });
-            
-
-        // if(email !== '' && password !== '' && email !== undefined && password !== undefined){
-        //     // [START auth_signup_password]
-        //     firebase.auth().createUserWithEmailAndPassword(email, password)
-        //     .then((userCredential) => {
-        //         // Signed in 
-        //         var user = userCredential.user;
-                
-                
-        //         console.log('ok ', user);
-        //     })
-        //     .catch((error) => {
-        //         var errorCode = error.code;
-        //         var errorMessage = error.message;
-                
-        //         console.log('erro ', errorMessage);
-        //     });
-        //     // [END auth_signup_password] 
-        // } else {
-        //     console.log(' ga bisa')
-        // }
+        this.props.registerAPI({email, password})
     }
 
     render(){
@@ -77,7 +38,7 @@ class Register extends Component {
                     <input className="input-register" id="email" placeholder="Email" onChange={this.handleValueChange} />
                     <input className="input-register" id="password" placeholder="Password" type="password" onChange={this.handleValueChange} />
 
-                    <button className="btn-register" onClick={this.handleSubmitForm}>Resgister</button>
+                    <Button onClick={this.handleSubmitForm} title="Resgister" loading={this.props.isLoading} />
                 </div>
  
                 {/* <button>Go To Login</button>
@@ -87,4 +48,12 @@ class Register extends Component {
     }
 }
 
-export default Register;
+const mapStateToProps = (state) => ({
+    isLoading : state.isLoading
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    registerAPI : (data) => dispatch(actionRegisterAPI(data))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
