@@ -1,0 +1,51 @@
+{
+  "kind": "identitytoolkit#GetAccountInfoResponse",
+  "users": [
+    {
+      "localId": "tTJlVDk1UiMY2ZbyQPyEIfYchh63",
+      "email": "zizi@gmail.com",
+      "passwordHash": "UkVEQUNURUQ=",
+      "emailVerified": false,
+      "passwordUpdatedAt": 1730375786350,
+      "providerUserInfo": [
+        {
+          "providerId": "password",
+          "federatedId": "zizi@gmail.com",
+          "email": "zizi@gmail.com",
+          "rawId": "zizi@gmail.com"
+        }
+      ],
+      "validSince": "1730375786",
+      "lastLoginAt": "1730375786350",
+      "createdAt": "1730375786350",
+      "lastRefreshAt": "2024-10-31T11:56:26.350Z"
+    }
+  ]
+} 
+
+{
+  "kind": "identitytoolkit#SignupNewUserResponse",
+  "idToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImU2YWMzNTcyNzY3ZGUyNjE0ZmM1MTA4NjMzMDg3YTQ5MjMzMDNkM2IiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vc2ltcGxlLW5vdGUtZmlyZWJhc2UtMzI3YWQiLCJhdWQiOiJzaW1wbGUtbm90ZS1maXJlYmFzZS0zMjdhZCIsImF1dGhfdGltZSI6MTczMDM3NTc4NiwidXNlcl9pZCI6InRUSmxWRGsxVWlNWTJaYnlRUHlFSWZZY2hoNjMiLCJzdWIiOiJ0VEpsVkRrMVVpTVkyWmJ5UVB5RUlmWWNoaDYzIiwiaWF0IjoxNzMwMzc1Nzg2LCJleHAiOjE3MzAzNzkzODYsImVtYWlsIjoieml6aUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsieml6aUBnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.O11jjtzsEdBnPeGXfzP5vUWCNE7JJxNXNmJBJU-mh2K7hSGxjmOGtdXzBVDR8D8M5sabUMSBXg3j8dcE6Zk6p3VMQhEhfF_585wdgAFEPSgIiK3pjesJdJCImz1IU4_Lv-qWaL2623Y2n4qdZZZP3ucsAIDH42DfhNwv6J3nuGCXBsDYNxLUM8Jnb9KyK5TVX8zsTA3LqYqcwF0hznxSZus7Twd9kddvF5a5puLnjR5mjK_fqESwFc4vZIVLFOYp3pqjwo6g8MwGJ2yA_YC7qga39biX5hauzCNp9eVR2WVLDGtfdIZm_r5-BNfhupuVJbPOFUmjT8f4RcD1P5YKMA",
+  "email": "zizi@gmail.com",
+  "refreshToken": "AMf-vBxS8-ubCquGlbw1JOwCIOpfaXZQ5woYNPBL2F4OKyDqs3Tsk7UmAYV8kbebu9sIRqLJSrWq5pSx1FsSqUuF1zNJmWf_pYis7QdlPeZEJfgN6UwhtUSn4M5zY2piw02DvvwZmnEiRICVoDypXsl7yuA6Rp46KfoDpDwhI6vjdwBRdlS0RTfgxd6GrSxjMCtYyKp1Rb2zLlk1FZ4ZtLtRkzLoz1d1Phr06FL0rpFZ7cjgz_817rw",
+  "expiresIn": "3600",
+  "localId": "tTJlVDk1UiMY2ZbyQPyEIfYchh63"
+}
+
+accessToken: "eyJhbGciOiJSUzI1NiIsImtpZCI6ImU2YWMzNTcyNzY3ZGUyNjE0ZmM1MTA4NjMzMDg3YTQ5MjMzMDNkM2IiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vc2ltcGxlLW5vdGUtZmlyZWJhc2UtMzI3YWQiLCJhdWQiOiJzaW1wbGUtbm90ZS1maXJlYmFzZS0zMjdhZCIsImF1dGhfdGltZSI6MTczMDM3NTc4NiwidXNlcl9pZCI6InRUSmxWRGsxVWlNWTJaYnlRUHlFSWZZY2hoNjMiLCJzdWIiOiJ0VEpsVkRrMVVpTVkyWmJ5UVB5RUlmWWNoaDYzIiwiaWF0IjoxNzMwMzc1Nzg2LCJleHAiOjE3MzAzNzkzODYsImVtYWlsIjoieml6aUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsieml6aUBnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.O11jjtzsEdBnPeGXfzP5vUWCNE7JJxNXNmJBJU-mh2K7hSGxjmOGtdXzBVDR8D8M5sabUMSBXg3j8dcE6Zk6p3VMQhEhfF_585wdgAFEPSgIiK3pjesJdJCImz1IU4_Lv-qWaL2623Y2n4qdZZZP3ucsAIDH42DfhNwv6J3nuGCXBsDYNxLUM8Jnb9KyK5TVX8zsTA3LqYqcwF0hznxSZus7Twd9kddvF5a5puLnjR5mjK_fqESwFc4vZIVLFOYp3pqjwo6g8MwGJ2yA_YC7qga39biX5hauzCNp9eVR2WVLDGtfdIZm_r5-BNfhupuVJbPOFUmjT8f4RcD1P5YKMA"
+auth: Object { app: {…}, heartbeatServiceProvider: {…}, appCheckServiceProvider: {…}, … }
+displayName: null
+email: "zizi@gmail.com"
+emailVerified: false
+isAnonymous: false
+metadata: Object { createdAt: "1730375786350", lastLoginAt: "1730375786350", lastSignInTime: "Thu, 31 Oct 2024 11:56:26 GMT", … }
+phoneNumber: null
+photoURL: null
+proactiveRefresh: Object { user: {…}, isRunning: false, errorBackoff: 30000, … }
+providerData: Array [ {…} ]
+providerId: "firebase"
+reloadListener: null
+reloadUserInfo: Object { localId: "tTJlVDk1UiMY2ZbyQPyEIfYchh63", email: "zizi@gmail.com", passwordHash: "UkVEQUNURUQ=", … }
+stsTokenManager: Object { refreshToken: "AMf-vBxS8-ubCquGlbw1JOwCIOpfaXZQ5woYNPBL2F4OKyDqs3Tsk7UmAYV8kbebu9sIRqLJSrWq5pSx1FsSqUuF1zNJmWf_pYis7QdlPeZEJfgN6UwhtUSn4M5zY2piw02DvvwZmnEiRICVoDypXsl7yuA6Rp46KfoDpDwhI6vjdwBRdlS0RTfgxd6GrSxjMCtYyKp1Rb2zLlk1FZ4ZtLtRkzLoz1d1Phr06FL0rpFZ7cjgz_817rw", accessToken: "eyJhbGciOiJSUzI1NiIsImtpZCI6ImU2YWMzNTcyNzY3ZGUyNjE0ZmM1MTA4NjMzMDg3YTQ5MjMzMDNkM2IiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vc2ltcGxlLW5vdGUtZmlyZWJhc2UtMzI3YWQiLCJhdWQiOiJzaW1wbGUtbm90ZS1maXJlYmFzZS0zMjdhZCIsImF1dGhfdGltZSI6MTczMDM3NTc4NiwidXNlcl9pZCI6InRUSmxWRGsxVWlNWTJaYnlRUHlFSWZZY2hoNjMiLCJzdWIiOiJ0VEpsVkRrMVVpTVkyWmJ5UVB5RUlmWWNoaDYzIiwiaWF0IjoxNzMwMzc1Nzg2LCJleHAiOjE3MzAzNzkzODYsImVtYWlsIjoieml6aUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsieml6aUBnbWFpbC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.O11jjtzsEdBnPeGXfzP5vUWCNE7JJxNXNmJBJU-mh2K7hSGxjmOGtdXzBVDR8D8M5sabUMSBXg3j8dcE6Zk6p3VMQhEhfF_585wdgAFEPSgIiK3pjesJdJCImz1IU4_Lv-qWaL2623Y2n4qdZZZP3ucsAIDH42DfhNwv6J3nuGCXBsDYNxLUM8Jnb9KyK5TVX8zsTA3LqYqcwF0hznxSZus7Twd9kddvF5a5puLnjR5mjK_fqESwFc4vZIVLFOYp3pqjwo6g8MwGJ2yA_YC7qga39biX5hauzCNp9eVR2WVLDGtfdIZm_r5-BNfhupuVJbPOFUmjT8f4RcD1P5YKMA", expirationTime: 1730379386471 }
+tenantId: null
+uid: "tTJlVDk1UiMY2ZbyQPyEIfYchh63"
