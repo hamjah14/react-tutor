@@ -9,6 +9,7 @@ import Product from "../Page/Product/Product";
 import Youtube from "../Page/Youtube/Youtube";
 import LifeCycleComponent from "../Page/LifeCycleComponent/LifeCycleComponent";
 import Hooks from "../Page/Hooks/Hooks";
+import Async from "../Page/Async/Async";
 
 // style
 import './Home.css';
@@ -33,6 +34,7 @@ class Home extends Component {
                             this.state.showComponent ? <Link to="/lifecycle">Life Cycle Component</Link> : null
                         }  
                         <Link to="/hooks">Hooks</Link>
+                        <Link to="/async">Async</Link>
                     </div>
                     
                     <Routes>
@@ -42,7 +44,8 @@ class Home extends Component {
                         <Route path="/product" element={<Product />} />
                         <Route path="/youtube" element={<Youtube />} /> 
                         <Route path="/lifecycle" element={<LifeCycleComponent />} />  
-                        <Route path="/hooks" element={<Hooks />} />
+                        <Route path="/hooks" element={<Hooks />} /> 
+                        <Route path="/async" element={<Async />} />
                     </Routes>
                 </Fragment>  
             </BrowserRouter>
