@@ -36,14 +36,12 @@ class Login extends Component {
             const res = await this.props.loginAPI({email, password}).catch(err => err);
  
             if(res){
-                console.log("login sukses")
-
                 this.setState({
                     email:'',
                     password: '',
                 }) 
  
-                window.location.href = '/'
+                // window.location.href = '/'
             } else {
                 console.log("logi gagal")
             }

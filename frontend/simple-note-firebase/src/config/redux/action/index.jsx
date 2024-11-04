@@ -1,8 +1,9 @@
 import ActionType from './globalActionType'
 
 // config 
-import firebaseApp from  '../../../config/firebase'; 
+import firebaseApp, { database } from  '../../../config/firebase'; 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { ref, set, push } from "firebase/database";
 
 export const actionRegisterAPI = (data) => (dispatch) => {  
     return new Promise ((resolve, reject) => { 
@@ -41,6 +42,8 @@ export const actionLoginAPI = (data) => (dispatch) => {
                 email : user.email,
                 uid : user.uid,
                 emailVerified: user.emailVerified,
+                refreshToken: user.refreshToken,
+                expirationTime: user.expirationTime,
             }
 
             dispatch({type: ActionType.CHANGE_LOADING, value: false })
@@ -59,4 +62,15 @@ export const actionLoginAPI = (data) => (dispatch) => {
             reject(false);
         }) 
     }) 
+}
+
+export const actionAddDataToAPI = (data) => (dispatch) => {
+    // return new Promise ((resolve, reject) => { 
+        // const db = getDatabase();
+        push(ref(database, 'note/' + data.userId), {
+            title: data.title,
+            content: data.content,
+            date : data.date
+        });
+    // }) 
 }
