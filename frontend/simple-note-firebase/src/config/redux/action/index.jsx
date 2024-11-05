@@ -3,7 +3,7 @@ import ActionType from './globalActionType'
 // config 
 import firebaseApp, { database } from  '../../../config/firebase'; 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { ref, set, push, onValue, updateStarCount  } from "firebase/database";
+import { ref, set, push, onValue, updateStarCount, remove  } from "firebase/database";
 
 export const actionRegisterAPI = (data) => (dispatch) => {  
     return new Promise ((resolve, reject) => { 
@@ -113,4 +113,23 @@ export const actionGetDataFromAPI = (userId) => (dispatch) => {
             resolve(data)
         });
     }) 
+}
+
+export const actionDeleteDataToAPI = (data) => (dispatch) => {
+    return new Promise ((resolve, reject) => {          
+        // const url = ref(database, 'note/' + data.userId + '/' + data.id); 
+
+        // return new Promise ((resolve) => {  
+        //     url.remove()
+        // }) 
+
+
+        remove(ref(database, 'note/' + data.userId + '/' + data.id))
+        .then((res) => {
+            resolve(res)
+        })
+        .catch((error) => {
+            reject(error)
+        });
+    })  
 }

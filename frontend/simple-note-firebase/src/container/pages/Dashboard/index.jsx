@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux"; 
 
 // redux
-import { actionAddDataToAPI, actionGetDataFromAPI, actionUpdateDataToAPI } from "../../../config/redux/action"; 
+import { actionAddDataToAPI, actionGetDataFromAPI, actionUpdateDataToAPI, actionDeleteDataToAPI } from "../../../config/redux/action"; 
 
 // style
 import './Dashboard.css'
@@ -46,12 +46,34 @@ class Dashboard extends Component {
                 const res = await this.props.updateNotes(data).catch(err => err);
                 console.log('dash', res)
             }
+ 
+            this.setState({
+                id : '',
+                title : '',
+                content : '',
+                date : '',
+                textButton: 'save'
+            })
         } else {
             alert('silahkan login')
-        }
-
+        } 
     }
      
+    handleDeleteNote = async(iddata) => {   
+        if(this.props.userData.uid !== undefined && this.props.userData.uid !== null){ 
+            const data = {
+                id : iddata,
+                userId : this.props.userData.uid,
+            }
+     
+            const res = await this.props.deleteNotes(data).catch(err => err) 
+             
+            console.log(res)
+        } else {
+            alert('silahkan login')
+        } 
+    }
+
     handleCancleForm = () => { 
         this.setState({
             id : '',
@@ -101,8 +123,11 @@ class Dashboard extends Component {
                                         <p className="title">{note.data.title}</p>
                                         <p className="date">{note.data.date}</p>
                                         <p className="content">{note.data.content}</p>
-                                        <button id="btn-edit" onClick={ () => this.handleSetForm(note) }>Edit</button>
-                                        <button id="btn-delete">Delete</button>
+                                        
+                                        <div className="action-wrapper">
+                                            <button className="btn-edit" onClick={ () => this.handleSetForm(note) }>Edit</button>
+                                            <button className="btn-delete" onClick={ () => this.handleDeleteNote(note.id) }>Delete</button>
+                                        </div>
                                     </div>
                                     )
                                 }) 
@@ -127,6 +152,7 @@ const mapDispatchToProps = (dispatch) => ({
     saveNotes : (data) => dispatch(actionAddDataToAPI(data)),
     updateNotes : (data) => dispatch(actionUpdateDataToAPI(data)),
     getNotes : (userId) => dispatch(actionGetDataFromAPI(userId)),
+    deleteNotes : (data) => dispatch(actionDeleteDataToAPI(data)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (Dashboard);
