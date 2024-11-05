@@ -65,14 +65,34 @@ export const actionLoginAPI = (data) => (dispatch) => {
 }
 
 export const actionAddDataToAPI = (data) => (dispatch) => {
-    // return new Promise ((resolve, reject) => { 
-        // const db = getDatabase();
-        const xx = push(ref(database, 'note/' + data.userId), {
+    return new Promise ((resolve, reject) => { 
+        push(ref(database, 'note/' + data.userId), {
             title: data.title,
             content: data.content,
             date : data.date
+        }).then((res) => {
+            resolve(res)
+        })
+        .catch((error) => {
+            reject(error)
         });
-    // }) 
+    }) 
+}
+
+export const actionUpdateDataToAPI = (data) => (dispatch) => {
+    return new Promise ((resolve, reject) => {  
+        set(ref(database, 'note/' + data.userId + '/' + data.id), {
+            title: data.title,
+            content: data.content,
+            date : data.date
+        })
+        .then((res) => {
+            resolve(res)
+        })
+        .catch((error) => {
+            reject(error)
+        });
+    }) 
 }
 
 export const actionGetDataFromAPI = (userId) => (dispatch) => { 
