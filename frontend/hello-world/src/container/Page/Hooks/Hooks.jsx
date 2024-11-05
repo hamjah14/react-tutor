@@ -1,6 +1,6 @@
 // libraries
-import react, { Component, useEffect, useState } from "react";
- 
+import { useEffect, useState } from "react";
+
 // style
 import './Hooks.css';
 
@@ -36,22 +36,22 @@ import './Hooks.css';
 //         )
 //     }
 // }
- 
+
 const Hooks = () => {
     const [count, setCount] = useState(0)
-     
+
     useEffect(() => {
         document.title = `Nilai saya ${count}`;
 
         return () => {
-            document.title = 'React App' 
+            document.title = 'React App'
         }
     })
 
     return (
         <div className="p-hooks">
             <p>Nilai saya saat ini adalah : {count}</p>
-            <button onClick={() => setCount( count + 1 )} >Update Nilai</button>
+            <button onClick={() => setCount(count + 1)} >Update Nilai</button>
         </div>
     )
 }

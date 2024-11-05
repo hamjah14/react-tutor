@@ -1,53 +1,53 @@
 // libraries
 import React, { Component } from "react";
-import { connect } from "react-redux"; 
- 
+import { connect } from "react-redux";
+
 // style
 import './login.css';
- 
+
 // component
 import { Button } from "../../../component/atoms/Button/índex";
 
 // redux
-import { actionLoginAPI } from "../../../config/redux/action"; 
-   
+import { actionLoginAPI } from "../../../config/redux/action";
 
-class Login extends Component { 
-    
+
+class Login extends Component {
+
     state = {
         email: '',
         password: '',
     }
 
-    handleValueChange = (element) => { 
+    handleValueChange = (element) => {
         this.setState({
-            [element.target.id] : element.target.value
+            [element.target.id]: element.target.value
         })
     }
-     
-    handleSubmitForm = async () => {
-        const {email, password} = this.state   
 
-        if(email !== '' && password !== '' && email !== undefined && password !== undefined){ 
-            const res = await this.props.loginAPI({email, password}).catch(err => err);
- 
-            if(res){
+    handleSubmitForm = async () => {
+        const { email, password } = this.state
+
+        if (email !== '' && password !== '' && email !== undefined && password !== undefined) {
+            const res = await this.props.loginAPI({ email, password }).catch(err => err);
+
+            if (res) {
                 this.setState({
-                    email:'',
+                    email: '',
                     password: '',
-                }) 
- 
+                })
+
                 // window.location.href = '/'
                 console.log(JSON.stringify(res))
                 localStorage.setItem('userData', JSON.stringify(res))
             } else {
                 console.log("logi gagal")
             }
-        } 
+        }
     }
-      
-    render(){  
-        return(
+
+    render() {
+        return (
             <div className="auth-container">
                 <div className="auth-card">
                     <p className="auth-title">Login Page</p>
@@ -55,7 +55,7 @@ class Login extends Component {
                     <input className="input-login" id="password" placeholder="Password" type="password" onChange={this.handleValueChange} value={this.state.password} />
 
                     <Button onClick={this.handleSubmitForm} title="Resgister" loading={this.props.isLoading} />
-                </div> 
+                </div>
 
 
                 {/* <button>Go To Login</button>
@@ -65,17 +65,17 @@ class Login extends Component {
         )
     }
 }
- 
+
 const mapStateToProps = (state) => {
     return {
         popupProps: state.popup,
         userProps: state.user,
-        isLoading : state.isLoading
+        isLoading: state.isLoading
     }
 }
- 
+
 const mapDispatchToProps = (dispatch) => ({
-    loginAPI : (data) => dispatch(actionLoginAPI(data))
+    loginAPI: (data) => dispatch(actionLoginAPI(data))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

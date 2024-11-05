@@ -8,32 +8,32 @@ const Provider = RootContext.Provider;
 const GlobalProvider = (Children) => {
     return (
         class ParentComp extends Component {
-            state = { 
+            state = {
                 totalOrder: 0
             }
 
             dispatchContext = (action) => {
-                switch(action.type){
+                switch (action.type) {
                     case ActionType.PLUS_ORDER:
                         return this.setState({
                             totalOrder: this.state.totalOrder + 1
                         })
-                    case ActionType.MINUS_ORDER:  
-                        if(this.state.totalOrder > 0 ){
+                    case ActionType.MINUS_ORDER:
+                        if (this.state.totalOrder > 0) {
                             return this.setState({
                                 totalOrder: this.state.totalOrder - 1
                             })
                         } else {
                             return 0
                         }
-                
+
                     default:
-                    return this.state;
-                } 
+                        return this.state;
+                }
             }
-            
+
             render() {
-                return ( 
+                return (
                     <Provider value={{
                         state: this.state,
                         dispatchContext: this.dispatchContext
@@ -41,7 +41,7 @@ const GlobalProvider = (Children) => {
                         <Children {...this.props} />
                     </Provider>
                 )
-            } 
+            }
         }
     )
 }
@@ -49,14 +49,14 @@ const GlobalProvider = (Children) => {
 const Consumer = RootContext.Consumer;
 export const GlobalConsumer = (Children) => {
     return (
-        
+
         class ParentConsumer extends Component {
-            render(){
-                return ( 
+            render() {
+                return (
                     <Consumer>
                         {
                             value => {
-                                return ( 
+                                return (
                                     <Children {...this.props} {...value} />
                                 )
                             }

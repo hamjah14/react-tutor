@@ -1,7 +1,8 @@
-.container{
+.container {
     max-width: 900px;
     display: block;
     margin: auto;
+
     .input-form {
         display: flex;
         flex-direction: column;
@@ -9,8 +10,9 @@
         align-items: center;
         padding-top: 20px;
         padding-bottom: 20px;
+
         .input-title {
-            width: 40%; 
+            width: 40%;
             border: 1px solid rgba(186, 20, 186, 0.933);
             padding: 12px;
             border-radius: 4px;
@@ -20,6 +22,7 @@
             box-sizing: border-box;
             outline: none;
         }
+
         .input-content {
             width: 40%;
             border: 1px solid rgba(186, 20, 186, 0.933);
@@ -32,11 +35,13 @@
             margin-bottom: 12px;
             outline: none;
         }
+
         .action-wrapper {
             display: flex;
             justify-content: space-between;
             width: 40%;
         }
+
         .btn-save {
             padding: 12px 50px;
             border-radius: 4px;
@@ -45,8 +50,9 @@
             color: rgba(186, 20, 186, 0.933);
             font-weight: bold;
             text-transform: uppercase;
-            outline: none;  
+            outline: none;
         }
+
         .btn-cancel {
             padding: 12px 50px;
             border-radius: 4px;
@@ -58,6 +64,7 @@
             outline: none;
         }
     }
+
     .card-content {
         border: 1px solid #bfbfbf;
         padding: 8px;
@@ -66,41 +73,48 @@
         margin: 10px;
         justify-content: right;
         align-items: right;
+
         /* transition: all ease 0.35s;
         &:hover {
             cursor: pointer;
             transform: translateY(-2px);
         } */
-        .title {  
-            padding: 12px;  
+        .title {
+            padding: 12px;
             font-size: 20px;
-            font-weight: bold; 
+            font-weight: bold;
         }
-        .date{
+
+        .date {
             font-size: 12px;
         }
-        .content{
+
+        .content {
             margin-top: 24px;
             font-size: 14px;
-        } 
+        }
 
-        .btn-edit, .btn-delete  { 
+        .btn-edit,
+        .btn-delete {
             border: none;
             padding: 10px 10px;
             margin: 5px;
-            border-radius: 4px; 
+            border-radius: 4px;
             justify-content: center;
             align-items: center;
             font-weight: bold;
-            color: #fff; 
+            color: #fff;
+
             &:hover {
                 cursor: pointer;
             }
         }
-        .btn-edit { 
+
+        .btn-edit {
             background: rgb(14, 175, 60);
         }
-        .btn-delete  { 
+
+        .btn-delete {
             background: rgb(203, 58, 70);
         }
     }

@@ -1,7 +1,7 @@
 import React from "react";
 
 class StateFullComponent extends React.Component {
-    render(){
+    render() {
         return <p> Hello class component </p>
     }
 }

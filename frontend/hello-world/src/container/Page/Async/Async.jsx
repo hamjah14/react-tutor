@@ -1,44 +1,43 @@
 // libraries
-import React, {Component} from "react"; 
+import React, { Component } from "react";
 
 // style
 import './style.css';
-import { text } from "@fortawesome/fontawesome-svg-core";
 
 class Async extends Component {
     state = {
-        text: 'text disini', 
+        text: 'text disini',
     }
 
     callBackFirstName = (callback) => {
         setTimeout(() => {
-            callback("Hasan") 
+            callback("Hasan")
         }, 3000)
     }
 
     promiseFirstName = () => {
-        return new Promise ((resolve) => {
+        return new Promise((resolve) => {
             setTimeout(() => {
-                resolve("Hasan") 
+                resolve("Hasan")
             }, 3000)
         })
     }
 
     promiseLastName = () => {
-        return new Promise ((resolve) => {
+        return new Promise((resolve) => {
             setTimeout(() => {
-                resolve("Nurawi") 
+                resolve("Nurawi")
             }, 3000)
         })
     }
-    
+
     login = () => {
         // Callback
         // this.callBackFirstName((res) => {
         //     const first = res;
         //     const last = "Nurawi"
         //     const name = first + ' ' + last
-    
+
         //     this.setState({text: name}) 
         // })
 
@@ -47,29 +46,29 @@ class Async extends Component {
         //     const first = result;
         //     const last = "Nurawi"
         //     const name = first + ' ' + last
-    
+
         //     this.setState({text: name})  
         // })
 
         Promise.all([this.promiseFirstName(), this.promiseLastName()]).then(
             ([result1, result2]) => {
                 this.setState({
-                    text : result1 + ' ' + result2
+                    text: result1 + ' ' + result2
                 })
             }
         )
     }
 
-    login2 = async() => {
+    login2 = async () => {
         const first = await this.promiseFirstName()
         const last = await this.promiseFirstName()
         const name = first + ' ' + last
 
-        this.setState({text : name})
+        this.setState({ text: name })
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div className="App">
                 <button onClick={this.login2}>Login</button>
                 <div />

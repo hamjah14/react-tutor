@@ -20,7 +20,7 @@ const firebaseConfig = {
   messagingSenderId: "205824184011",
   appId: "1:205824184011:web:28807b51094e90ac94954e",
   measurementId: "G-XRBBHWH8M2",
-  databaseURL: "https://simple-note-firebase-327ad-default-rtdb.asia-southeast1.firebasedatabase.app",  
+  databaseURL: "https://simple-note-firebase-327ad-default-rtdb.asia-southeast1.firebasedatabase.app",
 };
 
 // Initialize Firebase

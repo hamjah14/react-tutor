@@ -1,8 +1,8 @@
 // libraries
-import React, {Component, Fragment} from "react"; 
+import React, { Component, Fragment } from "react";
 
 // component
-import { RootContext } from "../../Home/Home";
+// import { RootContext } from "../../Home/Home";
 import CardProduct from "./CardProduct";
 
 // context
@@ -11,14 +11,14 @@ import { GlobalConsumer } from "../../../context/GlobalContext";
 // stayle
 import './Product.css';
 
-class Product extends Component{ 
+class Product extends Component {
 
-    render(){
-        return( 
+    render() {
+        return (
             <Fragment>
                 <p>Product</p>
                 <hr></hr>
-                
+
                 <div className="header">
                     <div className="logo">
                         <img src="" alt="" />
@@ -30,9 +30,9 @@ class Product extends Component{
                 </div>
 
                 <CardProduct />
-            </Fragment> 
+            </Fragment>
         )
     }
 }
- 
+
 export default GlobalConsumer(Product);

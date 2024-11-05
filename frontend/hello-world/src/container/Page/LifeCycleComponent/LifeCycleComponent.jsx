@@ -1,15 +1,15 @@
 // libraries
-import React, {Component} from "react"; 
-import { RootContext } from "../../Home/Home";
+import React, { Component } from "react";
+// import { RootContext } from "../../Home/Home";
 
 // context
 import { GlobalConsumer } from "../../../context/GlobalContext";
 
 // style
 import "./LifeCycleComponent.css"
- 
+
 class LifeCycleComponent extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         this.state = {
             count: 1
@@ -18,70 +18,70 @@ class LifeCycleComponent extends Component {
         console.log("constructor");
     }
 
-    static getDerivedStateFromProps(props, state){
-        console.log("getDerivedStateFromProps"); 
+    static getDerivedStateFromProps(props, state) {
+        console.log("getDerivedStateFromProps");
         return null
     }
 
-    componentDidMount(){
+    componentDidMount() {
         // console.log("componentDidMount"); 
 
-        setTimeout(()=>{
+        setTimeout(() => {
             this.setState({
-                count:2
+                count: 2
             })
-        }, 3000) 
+        }, 3000)
     }
- 
-    shouldComponentUpdate(nextProps, newState){
-        console.group("shouldComponentUpdate"); 
+
+    shouldComponentUpdate(nextProps, newState) {
+        console.group("shouldComponentUpdate");
         console.log("newState", newState);
         console.log("state", this.state);
         console.groupEnd();
 
-        if(newState.count >= 4){
+        if (newState.count >= 4) {
             return false
-        }  
-            
-        return true 
+        }
+
+        return true
     }
 
-    getSnapshotBeforeUpdate(prevProps, prevState){
-        console.log("getSnapshotBeforeUpdate");  
+    getSnapshotBeforeUpdate(prevProps, prevState) {
+        console.log("getSnapshotBeforeUpdate");
         return null
     }
- 
-    componentDidUpdate(prevProps, prevState, snapshot){
-        console.log("componentDidUpdate"); 
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log("componentDidUpdate");
     }
 
-    componentWillUnmount(){ 
+    componentWillUnmount() {
         console.log("componentWillUnmount");
     }
 
     changeCount = () => {
         this.setState({
-            count : this.state.count + 1
+            count: this.state.count + 1
         })
     }
 
-    render(){
+    render() {
         console.log("render");
 
-        return( 
+        return (
             <div>
                 <p>Life Cycle</p>
                 <hr></hr>
-                
+
                 <button className="btn" onClick={this.changeCount}> Component Button {this.state.count}</button>
                 <br />
 
                 <p>Total Order</p>
-                <hr></hr> 
+                <hr></hr>
                 <p>{this.props.state.totalOrder}</p>
-            </div>  
+            </div>
         )
     }
 }
-  
+
 export default GlobalConsumer(LifeCycleComponent);

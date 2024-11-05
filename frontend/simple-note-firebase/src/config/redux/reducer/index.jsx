@@ -1,42 +1,42 @@
 import ActionType from "../action/globalActionType"
 
 const initialState = {
-    popup : false,
-    isLogin: false, 
+    popup: false,
+    isLogin: false,
     isLoading: false,
     user: {},
     note: [],
 }
-  
+
 // reducer
 const rootReducer = (state = initialState, action) => {
-    switch(action.type){
+    switch (action.type) {
         case ActionType.CHANGE_POPUP:
             return {
-                ...state, 
+                ...state,
                 popup: action.value
             }
         case ActionType.CHANGE_ISLOGIN:
             return {
-                ...state, 
+                ...state,
                 isLogin: action.value
             }
         case ActionType.CHANGE_LOADING:
             return {
-                ...state, 
+                ...state,
                 isLoading: action.value
             }
         case ActionType.UPDATE_USER:
             return {
-                ...state, 
+                ...state,
                 user: action.value
             }
         case ActionType.SET_NOTES:
             return {
-                ...state, 
+                ...state,
                 note: action.value
             }
-            
+
         default:
             return state;
     }

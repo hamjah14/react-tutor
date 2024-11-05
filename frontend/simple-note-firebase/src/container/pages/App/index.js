@@ -3,10 +3,7 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom"; 
 // import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-
-// assets
-import logo from '../../../assets/logos/logo.svg';
-
+  
 // style
 import './App.css';
 

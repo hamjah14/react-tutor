@@ -1,6 +1,6 @@
 // libraries
-import React, {Component, Fragment, createContext} from "react"; 
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom"; 
+import React, { Component, Fragment } from "react";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 // pages
 import BlogPost from "../Page/BlogPost/BlogPost";
@@ -19,37 +19,37 @@ import GlobalProvider from "../../context/GlobalContext";
 
 class Home extends Component {
     state = {
-        showComponent: true, 
+        showComponent: true,
     }
-      
-    render(){
+
+    render() {
         return (
-            <BrowserRouter> 
+            <BrowserRouter>
                 <Fragment>
                     <div className="navigation">
-                        <Link to="/*">Blog Post</Link> 
+                        <Link to="/*">Blog Post</Link>
                         <Link to="/product">Product</Link>
                         <Link to="/youtube">Youtube</Link>
                         {
                             this.state.showComponent ? <Link to="/lifecycle">Life Cycle Component</Link> : null
-                        }  
+                        }
                         <Link to="/hooks">Hooks</Link>
                         <Link to="/async">Async</Link>
                     </div>
-                    
+
                     <Routes>
                         <Route path="/*" element={<BlogPost />} />
                         <Route path="/detail-post/:id" element={<DetailPost />} />
- 
+
                         <Route path="/product" element={<Product />} />
-                        <Route path="/youtube" element={<Youtube />} /> 
-                        <Route path="/lifecycle" element={<LifeCycleComponent />} />  
-                        <Route path="/hooks" element={<Hooks />} /> 
+                        <Route path="/youtube" element={<Youtube />} />
+                        <Route path="/lifecycle" element={<LifeCycleComponent />} />
+                        <Route path="/hooks" element={<Hooks />} />
                         <Route path="/async" element={<Async />} />
                     </Routes>
-                </Fragment>  
+                </Fragment>
             </BrowserRouter>
-        )  
+        )
     }
 }
 
