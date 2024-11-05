@@ -24,11 +24,7 @@ class Login extends Component {
             [element.target.id] : element.target.value
         })
     }
-    
-    componentDidMount(){
-        console.log(this.props)
-    }
-
+     
     handleSubmitForm = async () => {
         const {email, password} = this.state   
 
@@ -42,6 +38,8 @@ class Login extends Component {
                 }) 
  
                 // window.location.href = '/'
+                console.log(JSON.stringify(res))
+                localStorage.setItem('userData', JSON.stringify(res))
             } else {
                 console.log("logi gagal")
             }

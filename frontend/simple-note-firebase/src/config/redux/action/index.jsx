@@ -3,7 +3,7 @@ import ActionType from './globalActionType'
 // config 
 import firebaseApp, { database } from  '../../../config/firebase'; 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { ref, set, push } from "firebase/database";
+import { ref, set, push, onValue, updateStarCount  } from "firebase/database";
 
 export const actionRegisterAPI = (data) => (dispatch) => {  
     return new Promise ((resolve, reject) => { 
@@ -48,9 +48,9 @@ export const actionLoginAPI = (data) => (dispatch) => {
 
             dispatch({type: ActionType.CHANGE_LOADING, value: false })
             dispatch({type: ActionType.CHANGE_ISLOGIN, value: true })
-            dispatch({type: ActionType.CHANGE_USER, value: userData }) 
+            dispatch({type: ActionType.UPDATE_USER, value: userData }) 
 
-            resolve(true); 
+            resolve(userData); 
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -67,10 +67,30 @@ export const actionLoginAPI = (data) => (dispatch) => {
 export const actionAddDataToAPI = (data) => (dispatch) => {
     // return new Promise ((resolve, reject) => { 
         // const db = getDatabase();
-        push(ref(database, 'note/' + data.userId), {
+        const xx = push(ref(database, 'note/' + data.userId), {
             title: data.title,
             content: data.content,
             date : data.date
         });
     // }) 
+}
+
+export const actionGetDataFromAPI = (userId) => (dispatch) => { 
+    const starCountRef = ref(database, 'note/' + userId); 
+
+    return new Promise ((resolve) => {  
+        onValue(starCountRef, (snapshot) => {
+            const data = []
+            
+            Object.keys(snapshot.val()).map(key => {
+                data.push({
+                    id: key,
+                    data: snapshot.val()[key]
+                })
+            });  
+ 
+            dispatch({type: ActionType.SET_NOTES, value: data }) 
+            resolve(data)
+        });
+    }) 
 }

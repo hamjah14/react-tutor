@@ -1,10 +1,10 @@
 // libraries
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux"; 
 
 // redux
-import { actionAddDataToAPI } from "../../../config/redux/action"; 
+import { actionAddDataToAPI, actionGetDataFromAPI } from "../../../config/redux/action"; 
 
 // style
 import './Dashboard.css'
@@ -26,11 +26,19 @@ class Dashboard extends Component {
         const data = {...this.state};
         data['userId'] = this.props.userData.uid;
 
-        this.props.saveNotes(data);
-
-        console.log(data)
+        this.props.saveNotes(data); 
     }
     
+    async componentDidMount() {
+        const userData = JSON.parse(localStorage.getItem('userData')) 
+        
+        if(userData != null && userData != undefined){
+            const res = await this.props.getNotes(userData.uid).catch(err => err); 
+
+            console.log('dash ', res)
+        }
+    }
+
     render(){
         return(
             <div className="container">
@@ -43,11 +51,23 @@ class Dashboard extends Component {
                 
                 <hr />
 
-                <div className="card-content">
-                    <p className="title">Title</p>
-                    <p className="date">Title</p>
-                    <p className="content">Content Notes</p>
-                </div>
+                {
+                    this.props.notes.length > 0 ? (
+                        <Fragment> 
+                            {
+                                this.props.notes.map(note => {
+                                    return (
+                                    <div className="card-content">
+                                        <p className="title">{note.data.title}</p>
+                                        <p className="date">{note.data.date}</p>
+                                        <p className="content">{note.data.content}</p>
+                                    </div>
+                                    )
+                                }) 
+                            }
+                        </Fragment>
+                    ) : null
+                }
 
                 {/* <Link to="/registrasi">Go To Register</Link>
                 <Link to="/dashboard">Go To Dashboard</Link> */}
@@ -57,11 +77,13 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    userData : state.user
+    userData : state.user,
+    notes : state.note,
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    saveNotes : (data) => dispatch(actionAddDataToAPI(data))
+    saveNotes : (data) => dispatch(actionAddDataToAPI(data)),
+    getNotes : (userId) => dispatch(actionGetDataFromAPI(userId)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (Dashboard);

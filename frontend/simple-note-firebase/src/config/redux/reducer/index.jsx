@@ -5,6 +5,7 @@ const initialState = {
     isLogin: false, 
     isLoading: false,
     user: {},
+    note: [],
 }
   
 // reducer
@@ -20,15 +21,20 @@ const rootReducer = (state = initialState, action) => {
                 ...state, 
                 isLogin: action.value
             }
-        case ActionType.CHANGE_USER:
-            return {
-                ...state, 
-                user: action.value
-            }
         case ActionType.CHANGE_LOADING:
             return {
                 ...state, 
                 isLoading: action.value
+            }
+        case ActionType.UPDATE_USER:
+            return {
+                ...state, 
+                user: action.value
+            }
+        case ActionType.SET_NOTES:
+            return {
+                ...state, 
+                note: action.value
             }
             
         default:

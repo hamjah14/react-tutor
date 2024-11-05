@@ -1,8 +1,9 @@
 const ActionType = {
     CHANGE_POPUP: 'CHANGE_POPUP', 
     CHANGE_ISLOGIN: 'CHANGE_ISLOGIN', 
-    CHANGE_USER: 'CHANGE_USER',
     CHANGE_LOADING: 'CHANGE_LOADING',
+    UPDATE_USER: 'UPDATE_USER',
+    SET_NOTES: 'SET_NOTES',
 }
 
 export default ActionType;
