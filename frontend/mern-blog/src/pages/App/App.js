@@ -1,4 +1,5 @@
 // config
+import React from 'react';
 import { Routing } from '../../config/index'
 
 import './App.css';
