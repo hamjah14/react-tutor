@@ -1,0 +1,48 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    background-color: #68b35c;
+
+    .company-logo {
+        width: 70px;
+        height: 60px;
+        object-fit: contain;
+    }
+
+    .social-wrapper {
+        display: flex;
+
+        .icon-wrapper {
+            background-color: #fff;
+            padding: 1px;
+            border-radius: 20px;
+            margin: 0px 5px;
+
+            .icon-medsos {
+                width: 30px;
+                height: 30px;
+                object-fit: contain;
+            }
+        }
+
+    }
+}
+
+.copyright {
+    background-color: #4c9141;
+    padding: 10px 0px;
+
+    p {
+        font-size: 14px;
+        color: #fff;
+        margin: 0px;
+        text-align: center;
+        // font-weight: bold;
+
+        :hover {
+            cursor: pointer;
+        }
+    }
+}
