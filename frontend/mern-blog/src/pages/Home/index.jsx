@@ -1,4 +1,6 @@
+// libraries
 import React from 'react'
+import { Link } from "react-router-dom"
 
 // component
 import { BlogItem } from '../../component/moleculs'
@@ -11,7 +13,9 @@ const Home = () => {
     return (
         <div className='home-page-wrapper'>
             <div className='create-wrapper'>
-                <Button title='Create Blog' />
+                <Link to='/create-blog'>
+                    <Button title='Create Blog' />
+                </Link>
             </div>
             <Gap height={20} />
 

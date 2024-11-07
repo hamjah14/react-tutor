@@ -1,4 +1,6 @@
+// libraries
 import React from 'react'
+import { Link } from "react-router-dom"
 
 // component
 import { Input, Button, Upload, Textarea, Gap } from '../../../component/atoms'
@@ -27,6 +29,10 @@ const CreateBlog = () => {
             <Gap height={20} />
 
             <div className='button-action'>
+                <Link to='/'>
+                    <Button title='Cancel' />
+                </Link>
+                <Gap width={20} />
                 <Button title='Save' />
             </div>
             <Gap height={20} />
