@@ -7,10 +7,10 @@ export const BlogItem = () => {
     return (
         <div className='blog-item'>
             <img className='image-thumb' src={RegisterBg} alt='' />
-            <div className='blog-detail'>
-                <p className='blog-title'> jududl </p>
-                <p className='blog-author'> hamjah</p>
-                <p className='blog-content'> blalvalalala</p>
+            <div className='post-detail'>
+                <p className='post-title'> jududl </p>
+                <p className='post-author'> hamjah</p>
+                <p className='post-content'> blalvalalala</p>
             </div>
         </div>
     )

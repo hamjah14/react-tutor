@@ -3,8 +3,7 @@ import React from 'react'
 // component
 import { Input, Button, Gap, Link } from '../../component';
 
-// style
-import './login.scss'
+// assets 
 import { LoginBg } from '../../assets'
 
 const Login = () => {

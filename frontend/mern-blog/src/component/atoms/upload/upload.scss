@@ -1,0 +1,42 @@
+.upload-wrapper {
+    display: flex;
+    box-sizing: border-box;
+
+    .upload-input {
+        flex: 1;
+        // background-color: #188a6b;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-sizing: border-box;
+
+        .label {
+            font-size: 16px;
+            color: #2d2d2d;
+            margin: 0px;
+            margin-bottom: 6px;
+            text-align: left;
+        }
+
+        .upload {
+            border: 1px solid grey;
+            padding: 12px;
+            border-radius: 8px;
+            outline: none;
+            width: 95%;
+        }
+    }
+
+    .upload-preview {
+        width: 20%;
+        // background-color: #7a0f0f;
+        padding: 10px;
+        display: flex;
+
+        .preview-img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+    }
+}
