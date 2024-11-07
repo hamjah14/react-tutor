@@ -21,6 +21,7 @@ const MainApp = () => {
                 <Routes>
                     <Route path="/*" element={<Home />} />
                     <Route path="/create-blog" element={<CreateBlog />} />
+                    <Route path="/edit-blog" element={<CreateBlog />} />
                     <Route path="/detail-blog" element={<DetailBlog />} />
                 </Routes>
             </div>

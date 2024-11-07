@@ -1,6 +1,6 @@
 // libraries
 import React from 'react'
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 // component
 import { Input, Button, Upload, Textarea, Gap } from '../../../component/atoms'
@@ -9,6 +9,12 @@ import { Input, Button, Upload, Textarea, Gap } from '../../../component/atoms'
 import './createBlog.scss'
 
 const CreateBlog = () => {
+    const navigate = useNavigate();
+
+    function HomePage() {
+        navigate("/");
+    }
+
     return (
         <div className='create-blog-post'>
             <p className='title'>Create New Blog</p>
@@ -29,9 +35,7 @@ const CreateBlog = () => {
             <Gap height={20} />
 
             <div className='button-action'>
-                <Link to='/'>
-                    <Button title='Cancel' />
-                </Link>
+                <Button title='Cancel' onClick={HomePage} />
                 <Gap width={20} />
                 <Button title='Save' />
             </div>

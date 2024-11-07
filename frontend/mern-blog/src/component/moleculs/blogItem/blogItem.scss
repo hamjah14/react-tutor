@@ -1,5 +1,6 @@
 .blog-item {
     width: calc(50% - 10%);
+    max-height: 350px;
     border-radius: 8px;
     margin-bottom: 12px;
     overflow: hidden;
@@ -33,6 +34,13 @@
             margin-top: 18px;
             font-size: 15px;
             color: 353535;
+        }
+
+        .button-action {
+            width: 150px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
         }
     }
 }

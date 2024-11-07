@@ -3,7 +3,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 25px;
-    background-color: #68b35c;
+    // background-color: #68b35c;
+    background-color: #ac3722;
 
     .company-logo {
         width: 70px;
@@ -31,7 +32,8 @@
 }
 
 .copyright {
-    background-color: #4c9141;
+    // background-color: #4c9141;
+    background-color: #a32d18;
     padding: 10px 0px;
 
     p {
@@ -41,7 +43,7 @@
         text-align: center;
         // font-weight: bold;
 
-        :hover {
+        &:hover {
             cursor: pointer;
         }
     }
