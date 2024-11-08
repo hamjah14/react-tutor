@@ -4,8 +4,8 @@ import { Routes, Route } from 'react-router-dom'
 // pages 
 import { Header, Footer } from '../../component'
 import Home from '../Home/index'
-import CreateBlog from '../BlogPost/CreateBlog'
-import DetailBlog from '../BlogPost/DetailBlog'
+import CreatePost from '../BlogPost/CreatePost'
+import DetailPost from '../BlogPost/DetailPost'
 
 // style 
 import './mainApp.scss'
@@ -20,9 +20,9 @@ const MainApp = () => {
             <div className="content-wrapper">
                 <Routes>
                     <Route path="/*" element={<Home />} />
-                    <Route path="/create-blog" element={<CreateBlog />} />
-                    <Route path="/edit-blog" element={<CreateBlog />} />
-                    <Route path="/detail-blog" element={<DetailBlog />} />
+                    <Route path="/create-post" element={<CreatePost />} />
+                    <Route path="/edit-post" element={<CreatePost />} />
+                    <Route path="/detail-post" element={<DetailPost />} />
                 </Routes>
             </div>
 

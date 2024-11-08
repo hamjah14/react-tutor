@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from "react-router-dom"
 
 // component
-import { BlogItem } from '../../component/moleculs'
+import { PostItem } from '../../component/moleculs'
 import { Button, Gap } from '../../component'
 
 // style
@@ -13,22 +13,22 @@ const Home = () => {
     return (
         <div className='home-page-wrapper'>
             <div className='create-wrapper'>
-                <Link to='/create-blog'>
-                    <Button title='Create Blog' />
+                <Link to='/create-post'>
+                    <Button title='Create Post' />
                 </Link>
             </div>
             <Gap height={20} />
 
             <div className='content-wrapper'>
-                <BlogItem />
+                <PostItem />
                 <Gap height={15} />
-                <BlogItem />
+                <PostItem />
                 <Gap height={15} />
-                <BlogItem />
+                <PostItem />
                 <Gap height={15} />
-                <BlogItem />
+                <PostItem />
                 <Gap height={15} />
-                <BlogItem />
+                <PostItem />
             </div>
 
             <div className='pagination'>

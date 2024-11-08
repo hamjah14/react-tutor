@@ -1,0 +1,22 @@
+{
+  "name": "mern-api",
+  "version": "1.0.0",
+  "description": "REST API Node JS for MERN Stack Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "-", 
+    "start": "nodemon index.js",
+    "dev": "node -r dotenv/config ./bin/www",
+    "create-env": "printenv > .env"
+  },
+  "author": "Hamjah",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.14.0",
+    "eslint": "^9.14.0",
+    "globals": "^15.12.0"
+  }
+}

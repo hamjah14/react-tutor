@@ -1,5 +1,5 @@
 import { Header } from './header'
 import { Footer } from './footer'
-import { BlogItem } from './blogItem'
+import { PostItem } from './postItem'
 
-export { Header, Footer, BlogItem }
+export { Header, Footer, PostItem }
