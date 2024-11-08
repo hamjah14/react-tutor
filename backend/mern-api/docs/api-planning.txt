@@ -1,0 +1,32 @@
+Standar API
+{root.api}/{version}/{grouping}/{endpoint}
+
+Group: Authentication
+a. Register
+POST: {root.api}/{version}/auth/register
+
+reg:
+{
+    "name":"Testing",
+    "email":"test@gmail.com",
+    "password":"123456",
+}
+
+res:
+{
+    "kode":"200",
+    "message":"Successfully added data",
+    "data":{
+        "name":"Testing",
+        "email":"test@gmail.com"
+    }
+}
+
+b. Login
+b. Logout
+
+Group: Blogpost
+a. Create Post
+b. Get Post
+c. Update Post
+d. Delete Post

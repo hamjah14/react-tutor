@@ -3,7 +3,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express() 
 
-const postRoutes = require('./src/routes/postRoute')
+const postRoutes = require('./src/routes/v1/postRoute')
 
 // Enable CORS for all routes
 app.use(bodyParser.json())
