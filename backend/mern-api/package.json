@@ -4,7 +4,7 @@
   "description": "REST API Node JS for MERN Stack Project",
   "main": "index.js",
   "scripts": {
-    "test": "-", 
+    "test": "-",
     "start": "nodemon index.js",
     "dev": "node -r dotenv/config ./bin/www",
     "create-env": "printenv > .env"
@@ -12,6 +12,7 @@
   "author": "Hamjah",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.21.1"
   },
   "devDependencies": {
