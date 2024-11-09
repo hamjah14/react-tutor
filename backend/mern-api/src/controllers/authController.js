@@ -1,4 +1,4 @@
-const { validationResult } = require('express-validator')
+const { validationResult } = require("express-validator")
 
 const register = (req, res, next) => { 
     const{name,email} = req.body 
@@ -31,24 +31,24 @@ const register = (req, res, next) => {
 }
 
 const login = (req, res, next) => {
-    console.log('request', req.body)
+    console.log("request", req.body)
 
     res.json(
             { 
                 status: 200, 
-                message: 'Successfully added data',  
+                message: "Successfully added data",  
             } 
         )
 
     next()
 }
 const logout = (req, res, next) => {
-    console.log('request', req.body)
+    console.log("request", req.body)
 
     res.json(
             { 
                 status: 200, 
-                message: 'Successfully added data',  
+                message: "Successfully added data",  
             } 
         )
 

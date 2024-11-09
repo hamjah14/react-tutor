@@ -1,9 +1,9 @@
-const { validationResult } = require('express-validator')
+const { validationResult } = require("express-validator");
 
 const createPost = (req, res, next) => {
     const { title_post, body_post, user_id } = req.body
     const date = new Date();
-    const created_at = date.toJSON().slice(0,19).replace('T',':') 
+    const created_at = date.toJSON().slice(0,19).replace("T",":") 
     const errors = validationResult(req)
  
     if(!errors.isEmpty()){  
@@ -38,7 +38,7 @@ const getPost = (req, res, next) => {
     res.json(
             { 
                 status: 200, 
-                message: 'Successfully get data', 
+                message: "Successfully get data", 
                 data : { 
                     "title_post": "Harry potter book 1",
                     "author_post": "JK Rowling",
@@ -55,7 +55,7 @@ const updatePost = (req, res, next) => {
     res.json(
             { 
                 status: 200, 
-                message: 'Successfully updated data',  
+                message: "Successfully updated data",  
             } 
         )
 
@@ -66,7 +66,7 @@ const deletePost = (req, res, next) => {
     res.json(
             { 
                 status: 200, 
-                message: 'Successfully deleted data',  
+                message: "Successfully deleted data",  
             } 
         )
 
