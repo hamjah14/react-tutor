@@ -1,13 +1,36 @@
+const { validationResult } = require('express-validator')
+
 const createPost = (req, res, next) => {
-    console.log('request', req.body)
+    const { title_post, body_post, user_id } = req.body
+    const date = new Date();
+    const created_at = date.toJSON().slice(0,19).replace('T',':') 
+    const errors = validationResult(req)
+ 
+    if(!errors.isEmpty()){  
+        const err = new Error("Invalid value")
+        err.status =  400 
+        err.data = errors.array()
 
-    res.json(
-            { 
-                status: 200, 
-                message: 'Successfully added data',  
-            } 
-        )
+        throw err
+    } else { 
+        const result = {
+            "code":"201",
+            "message":"Successfully added data",
+            "data": {
+                    "title_post": title_post,  
+                    "body_post": body_post,
+                    "thumb_image": "image.JPG",
+                    "created_at": created_at,
+                    "author": {
+                        "user_id": user_id,
+                        "name": "Testing"
+                    }
+            }
+        } 
 
+        res.status(201).json(result)
+    }
+ 
     next()
 }
 
