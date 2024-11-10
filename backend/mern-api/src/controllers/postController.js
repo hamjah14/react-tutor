@@ -53,20 +53,17 @@ const createPost = (req, res, next) => {
 }
 
 const getPost = (req, res, next) => {
-    res.json(
-            { 
-                status: 200, 
-                message: "Successfully get data", 
-                data : { 
-                    "title_post": "Harry potter book 1",
-                    "author_post": "JK Rowling",
-                    "date_post": "JK Rowling",
-                    "body_post": "Once upon a time bla bla bla bla",
-                }
-            } 
-        )
-
-    next()
+    PostModel.find()
+    .then(result => { 
+        res.json({ 
+                "status": 200, 
+                "message": "Successfully get data", 
+                "data" : result
+        }) 
+    })
+    .catch(err => {
+        next(err)
+    }) 
 }
 
 const updatePost = (req, res, next) => {

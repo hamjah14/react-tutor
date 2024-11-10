@@ -13,6 +13,7 @@ router.post("/post", [
     ], post.createPost);
 
 router.get("/post", post.getPost);
+
 router.put("/post/1", post.updatePost);
 router.delete("/post/1", post.deletePost);
 
