@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const schema = mongoose.Schema;
 
 const PostModel = new schema({
+    _id: String,
     title_post: {
         type: String,
         required: true

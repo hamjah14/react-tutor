@@ -66,6 +66,31 @@ const getPost = (req, res, next) => {
     }) 
 }
 
+const getPostById = (req, res, next) => {
+    const postId = req.params.postId;
+
+
+    PostModel.findById(postId)
+    .then(result => { 
+        console.log(result);
+
+        if(!result) {
+            const error = new Error("Data is not available");
+            error.errorStatus = 404
+            throw error
+        }
+
+        res.json({ 
+                "status": 200, 
+                "message": "Successfully get data", 
+                "data" : result
+        }) 
+    })
+    .catch(err => {
+        next(err)
+    }) 
+}
+
 const updatePost = (req, res, next) => {
     res.json(
             { 
@@ -88,4 +113,4 @@ const deletePost = (req, res, next) => {
     next()
 }
 
-module.exports = { createPost, getPost, updatePost, deletePost }
+module.exports = { createPost, getPost, getPostById, updatePost, deletePost }
