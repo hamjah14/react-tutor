@@ -13,6 +13,7 @@ router.post("/post", [
     ], post.createPost); 
 
 router.get("/post", post.getPost);
+// router.get("/post?page=5&limit=5", post.getPost);
 router.get("/post/:postId", post.getPostById); 
 
 router.put("/post/:postId", [ 

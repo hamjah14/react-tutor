@@ -3,6 +3,7 @@ const PostModel = require("../models/postModel");
 const path = require("path");
 const fs = require("fs");
 
+// Save post into mongodb
 const createPost = (req, res, next) => { 
     const errors = validationResult(req)
     if(!errors.isEmpty()){  
@@ -54,13 +55,27 @@ const createPost = (req, res, next) => {
     }); 
 }
 
+// get all data post from mongodb
 const getPost = (req, res, next) => {
+    const page = req.query.page || 1;
+    const limit = req.query.limit || 5;
+    let totalData = 0; 
+
     PostModel.find()
-    .then(result => { 
+    .countDocuments()
+    .then(count => {
+        totalData = count;
+
+        return PostModel.find().skip((page - 1) * limit).limit(limit)
+    })
+    .then(result => {
         res.json({ 
                 "status": 200, 
                 "message": "Successfully get data", 
-                "data" : result
+                "data" : result,
+                "total_data": totalData,
+                "page": page,
+                "limit": limit,
         }) 
     })
     .catch(err => {
