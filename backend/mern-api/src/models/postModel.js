@@ -9,6 +9,10 @@ const PostModel = new schema({
     body_post: {
         type: String,
         required: true
+    },
+    thumb_image: {
+        type: String,
+        required: true
     }, 
     author: {
         type: Object,

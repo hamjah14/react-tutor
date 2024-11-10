@@ -1,23 +1,30 @@
 const { validationResult } = require("express-validator");
 const PostModel = require("../models/postModel")
 
-const createPost = (req, res, next) => {
-    const { title_post, body_post, user_id, name } = req.body
+const createPost = (req, res, next) => { 
+    const errors = validationResult(req)
+    if(!errors.isEmpty()){  
+        const err = new Error("Invalid value");
+        err.status =  400;
+        err.data = errors.array(); 
+        throw err;
+    }  
+
+    if(!req.file){
+        const err = new Error("File is not uploaded");
+        err.status =  422; 
+        throw err;
+    }
+    
+    const { title_post, body_post, user_id, name } = req.body;
+    const image = req.file.path
     // const date = new Date();
     // const created_at = date.toJSON().slice(0,19).replace("T",":") 
-    const errors = validationResult(req)
- 
-    if(!errors.isEmpty()){  
-        const err = new Error("Invalid value")
-        err.status =  400 
-        err.data = errors.array()
-
-        throw err
-    }  
 
     const posting = new PostModel({
         "title_post": title_post,  
         "body_post": body_post,
+        "thumb_image": image,
         "author": 
         {
             "user_id": user_id,
@@ -37,7 +44,7 @@ const createPost = (req, res, next) => {
     })
     .catch( err => { 
         console.log(err);
-        
+
         res.status(500).json({
             "status":"500",
             "message":"Internal Server Error"

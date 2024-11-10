@@ -2,7 +2,7 @@ import globals from "globals";
 import pluginJs from "@eslint/js";
 // import tseslint from "typescript-eslint";
 import jest from "eslint-plugin-jest";
-import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
+// import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [ 
@@ -18,5 +18,5 @@ export default [
       "jest/prefer-expect-assertions": "off",
     },
   },
-  eslintPluginPrettierRecommended,
+  // eslintPluginPrettierRecommended,
 ];
