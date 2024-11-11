@@ -19,8 +19,9 @@ const createPost = (req, res, next) => {
         throw err;
     }
     
-    const { title_post, body_post, user_id, name } = req.body;
-    const image = req.file.path
+    const { title_post, body_post, user_id, name } = req.body; 
+    let image = req.file.path.replace("assets\\images\\", "")
+    console.log("ver 2", image)
     // const date = new Date();
     // const created_at = date.toJSON().slice(0,19).replace("T",":") 
 
@@ -196,8 +197,8 @@ const deletePost = (req, res, next) => {
     }) 
 }
 
-const removeImage = (filePath) => { 
-    filePath =  path.join(__dirname, "../..",filePath);
+const removeImage = (filePath) => {  
+    filePath =  path.join(__dirname, "../../assets/images",filePath);
     fs.unlink(filePath, err=> console.log(err));
 }
 

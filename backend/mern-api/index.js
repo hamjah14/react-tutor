@@ -12,7 +12,7 @@ const authRoutes = require("./src/routes/v1/authRoute");
 app.use(cors());
 app.use(bodyParser.json());
 app.use(upload.single("image"));
-app.use("/assets/images", express.static(path.join(__dirname, "assets/images/")))
+app.use("/images/post", express.static(path.join(__dirname, "assets/images/post/")))
 
 // /v1/auth/*
 app.use("/v1/auth", authRoutes);

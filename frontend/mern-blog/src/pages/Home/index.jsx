@@ -1,15 +1,33 @@
 // libraries
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom"
 
 // component
 import { PostItem } from '../../component/moleculs'
 import { Button, Gap } from '../../component'
 
+import { getPostAPI } from '../../config/service/api'
+
 // style
 import './home.scss'
 
 const Home = () => {
+    const [ post, setPost ] = useState([])
+
+    const getPost = () => {
+        getPostAPI('?page=1&limit=4').then(
+            result => { 
+                setPost(result.data)
+            }
+        )
+    }
+
+    useEffect(() => {   
+        if (post !== undefined && post.length == 0) { 
+            getPost()
+        }   
+    })
+
     return (
         <div className='home-page-wrapper'>
             <div className='create-wrapper'>
@@ -20,7 +38,7 @@ const Home = () => {
             <Gap height={20} />
 
             <div className='content-wrapper'>
-                <PostItem />
+                {/* <PostItem />
                 <Gap height={15} />
                 <PostItem />
                 <Gap height={15} />
@@ -28,7 +46,14 @@ const Home = () => {
                 <Gap height={15} />
                 <PostItem />
                 <Gap height={15} />
-                <PostItem />
+                <PostItem /> */}
+
+                {
+                    post.map(post => {
+                        // return <PostItem key={post.id} data={post} edit={this.handleEditDataFromApi} remove={this.handleRevomePostToApi} />
+                        return <PostItem key={post._id} data={post} />
+                    })
+                }
             </div>
 
             <div className='pagination'>
