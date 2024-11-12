@@ -1,20 +1,23 @@
 // libraries
-import React from 'react'
-import { useNavigate } from "react-router-dom"
-
-// assets
-import { RegisterBg } from '../../../assets'
-
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+ 
 // style
-import './postItem.scss'
+import './postItem.scss';
 
 // component
-import { Button, Gap } from '../..'
+import { Button, Gap } from '../..';
+
+// redux
+import { ActionType } from '../../../config';
 
 export const PostItem = (props) => { 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const dispatch = useDispatch(); 
 
     function DetailPostPage() {
+        dispatch({type: ActionType.CHANGE_POSTID, payload: props.id})
         navigate("/detail-post")
     }
      

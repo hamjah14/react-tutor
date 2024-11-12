@@ -17,9 +17,9 @@ const Create = (path, data) => {
     return promise;
 }
 
-const Get = (path) => {
+const Get = (path, query) => {
     const promise = new Promise((resolve, reject) => {
-        const url = `${DEV_API}/${path}`;
+        const url = `${DEV_API}/${path}${query}`;
 
         axios.get(url)
         .then((res) => { 
@@ -61,5 +61,20 @@ const Delete = (path, id) => {
 
     return promise;
 }
+ 
+const GetById = (path, id) => {
+    const promise = new Promise((resolve, reject) => {
+        const url = `${DEV_API}/${path}/${id}`;
 
-export { Create, Get, Update, Delete };
+        axios.get(url)
+        .then((res) => {  
+            resolve(res.data)
+        }, (err) => {
+            reject(err)
+        }) 
+    })
+
+    return promise;
+}
+ 
+export { Create, Get, Update, Delete, GetById };

@@ -1,56 +1,53 @@
 // libraries
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 
 // component
 import { PostItem } from '../../component/moleculs';
 import { Button, Gap } from '../../component'; 
-import { getPostAPI } from '../../config/service/api';
-import { actionSetPage } from '../../config/redux/action'
+import { getPost } from '../../config/service/api'; 
 
 // style
 import './home.scss';
 
 const Home = () => {
+    const [ currentPage, setCurrentPage ] = useState(1); 
+    const [ limit, setLimit ] = useState(4); 
     const [ post, setPost ] = useState([]); 
-    const [ totalPage, setTotalPage ] = useState(0);
-    // const [ prevPage, setPrevPage ] = useState(0);
-    // const [ nextPage, setNextPage ] = useState(0);
-    const { page, limit } = useSelector(state => state.homeReducer);
-    const dispatch = useDispatch(); 
+    const [ totalPage, setTotalPage ] = useState(0); 
 
-    const getPost = () => {
-        getPostAPI(`?page=${page}&limit=${limit}`).then(
+    const getPostData = () => {
+        getPost(`?page=${currentPage}&limit=${limit}`).then(
             result => { 
                 const totalPage = Math.ceil(result.total_data / limit)
 
                 setPost(result.data)  
                 setTotalPage(totalPage)
-                dispatch(actionSetPage(result.page)) 
+                setCurrentPage(result.page)
+                setLimit(result.limit)
             }
         )
     }
 
     const handlePrevPage = () => {
-        const newPage = parseInt(page) - 1;
+        const newPage = parseInt(currentPage) - 1;
   
-        if(page > 1){
-            dispatch(actionSetPage(newPage)) 
+        if(currentPage > 1){
+            setCurrentPage(newPage)
         }
     }
 
     const handleNextPage = () => {
-        const newPage = parseInt(page) + 1;
+        const newPage = parseInt(currentPage) + 1;
 
-        if(page < totalPage){ 
-            dispatch(actionSetPage(newPage)) 
+        if(currentPage < totalPage){ 
+            setCurrentPage(newPage)
         }
     }
 
     useEffect(() => {   
-        getPost() 
-    },[page])
+        getPostData() 
+    },[currentPage])
 
     return (
         <div className='home-page-wrapper'>
@@ -64,7 +61,7 @@ const Home = () => {
             <div className='content-wrapper'> 
                 {
                     post.map(post => { 
-                        return <PostItem key={post._id} data={post} />
+                        return <PostItem key={post._id} id={post._id} data={post} />
                     })
                 }
             </div>
@@ -72,15 +69,15 @@ const Home = () => {
 
             <div className='pagination'> 
                 {
-                    page > 1 ? (<Button title='Previous' onClick={handlePrevPage} />) : null
+                    currentPage > 1 ? (<Button title='Previous' onClick={handlePrevPage} />) : null
                 }
                 
                 <Gap width={40} />
-                <p className='text-page'>{page} / {totalPage}</p>
+                <p className='text-page'>{currentPage} / {totalPage}</p>
                 <Gap width={40} />
 
                 {
-                    page < totalPage ? (<Button title='next' onClick={handleNextPage} />) : null
+                    currentPage < totalPage ? (<Button title='next' onClick={handleNextPage} />) : null
                 }
                 
             </div>

@@ -1,30 +1,57 @@
 // libraries
-import React from 'react'
-import { useNavigate } from "react-router-dom"
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom'; 
+import { Lightbox } from "react-modal-image";
 
 // style
-import './detailPost.scss'
+import './detailPost.scss';
 
 // component
-import { Button, Gap } from '../../../component/atoms'
-import { RegisterBg } from '../../../assets'
+import { Button, Gap } from '../../../component/atoms' 
+
+// redux
+import { actionSetPostData } from '../../../config/redux/action'
 
 const DetailPost = () => {
+    const [ modalStatus, setModalStatus ] = useState(false) 
     const navigate = useNavigate();
+    const dispatch = useDispatch();  
+    const { postId, postData, date } = useSelector(state => state.rootReducer);
 
     function HomePage() {
-        navigate("/");
+        navigate('/');
     }
+
     function EditPage() {
-        navigate("/edit-post");
+        navigate('/edit-post');
     }
+ 
+    function openLightbox() {
+        setModalStatus(true);
+    }
+ 
+    function closeLightbox() {
+        setModalStatus(false);
+    }
+
+    useEffect(() => {   
+        if(postId !== null && postId !== undefined && postId !== "-"){ 
+            dispatch(actionSetPostData(postId));   
+        } else { 
+            setTimeout(()=>{
+                HomePage() 
+            }, 2000)
+        }
+ 
+    },[postId])
 
     return (
         <div className='detail-post-wrapper'>
-            <img className='img-cover' src={RegisterBg} alt='' />
-            <p className='post-title'>Title Post</p>
-            <p className='post-author'>Author - Date Post</p>
-            <p className='post-body'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+            <img className='img-cover' src={ "http://localhost:4000/images/" + postData.thumb_image } alt='' onClick={openLightbox} />
+            <p className='post-title'>{postData.title_post}</p>
+            <p className='post-author'>{postData.author_name}, {date}</p>
+            <p className='post-body'>{postData.body_post}</p>
 
             <div className='button-action'>
                 <Button title='Back' onClick={HomePage} />
@@ -33,6 +60,24 @@ const DetailPost = () => {
                 <Gap width={20} />
                 <Button title='Delet' />
             </div>
+
+              {/* The Modal */}  
+            <div id="myModal" className="modal-image"> 
+                <span className="close">&times;</span> 
+                <img className="modal-content" id="img01" /> 
+                <div className="caption"></div>
+            </div>
+
+            <Gap height={30} />
+            {
+                modalStatus && (
+                    <Lightbox 
+                        medium={ "http://localhost:4000/images/" + postData.thumb_image }  
+                        alt={postData.title_post} 
+                        onClose={closeLightbox}
+                    />
+                )
+            }
         </div>
     )
 }

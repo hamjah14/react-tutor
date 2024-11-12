@@ -18,14 +18,8 @@ const CreatePost = () => {
     return (
         <div className='create-post-post'>
             <p className='title'>Create New Post</p>
-            <div className='post-header'>
-                <div className='header-title'>
-                    <Input label='Post Title' placeholder='Post Title' />
-                </div>
-                <div className='header-author'>
-                    <Input label='Post Author' placeholder='Post Author' />
-                </div>
-            </div>
+             
+            <Input label='Post Title' placeholder='Post Title' /> 
             <Gap height={20} />
 
             <Textarea label='Post Content' />
