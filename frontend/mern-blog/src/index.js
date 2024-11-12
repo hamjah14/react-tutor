@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux'
 
 // config
-import { Routing } from './config/'
+import { Routing, StoreReducer } from './config/'
 
 // style
 import './index.css'; 
@@ -11,7 +12,9 @@ import './index.css';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Routing />
+    <Provider store={ StoreReducer }>
+      <Routing />
+    </Provider>
   </React.StrictMode>
 );
 

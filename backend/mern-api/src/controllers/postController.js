@@ -30,11 +30,8 @@ const createPost = (req, res, next) => {
         "title_post": title_post,  
         "body_post": body_post,
         "thumb_image": image,
-        "author": 
-        {
-            "user_id": user_id,
-            "name": name
-        }
+        "author_id": user_id,
+        "author_name": name
     });
 
     posting.save()
@@ -138,11 +135,9 @@ const updatePost = (req, res, next) => {
 
         posting.title_post = title_post;
         posting.body_post = body_post;
-        posting.image = image;
-        posting.author = {
-            "user_id": user_id,
-            "name": name
-        };
+        posting.image = image; 
+        posting.author_id= user_id;
+        posting.author_name= name;
         
         return posting.save() 
     })

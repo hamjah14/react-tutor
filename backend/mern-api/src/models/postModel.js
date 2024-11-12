@@ -15,8 +15,12 @@ const PostModel = new schema({
         type: String,
         required: true
     }, 
-    author: {
-        type: Object,
+    author_id: {
+        type: String,
+        required: true
+    },
+    author_name: {
+        type: String,
         required: true
     },
 },{

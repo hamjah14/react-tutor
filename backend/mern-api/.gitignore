@@ -24,4 +24,4 @@ yarn-error.log*
 
 # images
 
-/assets/images/*
+/assets/*

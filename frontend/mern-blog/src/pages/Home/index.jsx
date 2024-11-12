@@ -1,32 +1,35 @@
 // libraries
-import React, { useEffect, useState } from 'react'
-import { Link } from "react-router-dom"
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 // component
-import { PostItem } from '../../component/moleculs'
-import { Button, Gap } from '../../component'
-
-import { getPostAPI } from '../../config/service/api'
+import { PostItem } from '../../component/moleculs';
+import { Button, Gap } from '../../component'; 
+import { getPostAPI } from '../../config/service/api';
+import { ActionType, Reducer } from '../../config'
 
 // style
-import './home.scss'
+import './home.scss';
 
 const Home = () => {
-    const [ post, setPost ] = useState([])
+    const [ post, setPost ] = useState([]); 
+    const { page, limit } = useSelector(state => state.homeReducer);
+    const dispatch = useDispatch(); 
 
     const getPost = () => {
-        getPostAPI('?page=1&limit=4').then(
+        getPostAPI(`?page=${page}&limit=${limit}`).then(
             result => { 
-                setPost(result.data)
+                setPost(result.data) 
+ 
+                // dispatch({type: ActionType.CHANGE_PAGE, payload: 4})
             }
         )
     }
 
     useEffect(() => {   
-        if (post !== undefined && post.length == 0) { 
-            getPost()
-        }   
-    })
+        getPost()  
+    },[])
 
     return (
         <div className='home-page-wrapper'>
@@ -37,20 +40,9 @@ const Home = () => {
             </div>
             <Gap height={20} />
 
-            <div className='content-wrapper'>
-                {/* <PostItem />
-                <Gap height={15} />
-                <PostItem />
-                <Gap height={15} />
-                <PostItem />
-                <Gap height={15} />
-                <PostItem />
-                <Gap height={15} />
-                <PostItem /> */}
-
+            <div className='content-wrapper'> 
                 {
-                    post.map(post => {
-                        // return <PostItem key={post.id} data={post} edit={this.handleEditDataFromApi} remove={this.handleRevomePostToApi} />
+                    post.map(post => { 
                         return <PostItem key={post._id} data={post} />
                     })
                 }
@@ -58,6 +50,8 @@ const Home = () => {
 
             <div className='pagination'>
                 <Button title='Previous' />
+                <Gap width={20} />
+                <Button title={page} />
                 <Gap width={20} />
                 <Button title='next' />
             </div>
