@@ -14,8 +14,17 @@
     }
 
     .pagination {
-        width: 400px;
+        width: 500px;
         display: flex;
-        margin: auto;
+        margin: auto; 
+        justify-content: space-between;
+    }
+
+    .text-page {
+        font-size: 30px;
+        width: 300px;
+        text-align: center;
+        font-weight: bold;
+        margin: 0px; 
     }
 }

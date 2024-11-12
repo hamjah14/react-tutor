@@ -7,29 +7,50 @@ import { useSelector, useDispatch } from 'react-redux';
 import { PostItem } from '../../component/moleculs';
 import { Button, Gap } from '../../component'; 
 import { getPostAPI } from '../../config/service/api';
-import { ActionType, Reducer } from '../../config'
+import { actionSetPage } from '../../config/redux/action'
 
 // style
 import './home.scss';
 
 const Home = () => {
     const [ post, setPost ] = useState([]); 
+    const [ totalPage, setTotalPage ] = useState(0);
+    // const [ prevPage, setPrevPage ] = useState(0);
+    // const [ nextPage, setNextPage ] = useState(0);
     const { page, limit } = useSelector(state => state.homeReducer);
     const dispatch = useDispatch(); 
 
     const getPost = () => {
         getPostAPI(`?page=${page}&limit=${limit}`).then(
             result => { 
-                setPost(result.data) 
- 
-                // dispatch({type: ActionType.CHANGE_PAGE, payload: 4})
+                const totalPage = Math.ceil(result.total_data / limit)
+
+                setPost(result.data)  
+                setTotalPage(totalPage)
+                dispatch(actionSetPage(result.page)) 
             }
         )
     }
 
+    const handlePrevPage = () => {
+        const newPage = parseInt(page) - 1;
+  
+        if(page > 1){
+            dispatch(actionSetPage(newPage)) 
+        }
+    }
+
+    const handleNextPage = () => {
+        const newPage = parseInt(page) + 1;
+
+        if(page < totalPage){ 
+            dispatch(actionSetPage(newPage)) 
+        }
+    }
+
     useEffect(() => {   
-        getPost()  
-    },[])
+        getPost() 
+    },[page])
 
     return (
         <div className='home-page-wrapper'>
@@ -47,13 +68,21 @@ const Home = () => {
                     })
                 }
             </div>
+            <Gap height={20} />
 
-            <div className='pagination'>
-                <Button title='Previous' />
-                <Gap width={20} />
-                <Button title={page} />
-                <Gap width={20} />
-                <Button title='next' />
+            <div className='pagination'> 
+                {
+                    page > 1 ? (<Button title='Previous' onClick={handlePrevPage} />) : null
+                }
+                
+                <Gap width={40} />
+                <p className='text-page'>{page} / {totalPage}</p>
+                <Gap width={40} />
+
+                {
+                    page < totalPage ? (<Button title='next' onClick={handleNextPage} />) : null
+                }
+                
             </div>
             <Gap height={20} />
         </div>

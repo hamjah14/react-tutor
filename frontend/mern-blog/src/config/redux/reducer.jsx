@@ -7,6 +7,7 @@ const initialState = {
 
 const initialStateHome = {
     postData: [],
+    totalData: 0, 
     page: 1,
     limit: 4, 
 }
