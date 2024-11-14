@@ -1,15 +1,14 @@
 import axios from "axios"; 
 const DEV_API = "http://localhost:4000";
 
-const Create = (path, data) => {
-    const promise = new Promise((resolve, reject) => {
-        const url = `${DEV_API}/${path}}`;
-
+const Create = (path, data) => { 
+    const url = `${DEV_API}/${path}`;
+    // console.log("api", data)  
+    const promise = new Promise((resolve, reject) => { 
         axios.post(url, data)
         .then((res) => {
             resolve(res)
-        }, (err) => {
-            console.log('err ', err)
+        }, (err) => { 
             reject(err)
         })
     })

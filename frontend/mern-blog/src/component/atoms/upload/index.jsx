@@ -2,11 +2,8 @@ import React from 'react'
 
 // style
 import './upload.scss'
-
-// component
-import { LoginBg } from '../../../assets'
-
-export const Upload = ({ label, ...rest }) => {
+  
+export const Upload = ({ label, img, ...rest }) => {
     return (
         <div className='upload-wrapper'>
             <div className='upload-input'>
@@ -14,7 +11,7 @@ export const Upload = ({ label, ...rest }) => {
                 <input className='upload' type='file' {...rest} />
             </div>
             <div className='upload-preview'>
-                <img className='preview-img' src={LoginBg} alt='' />
+                { img && <img className='preview-img' src={img} alt='' /> }
             </div>
         </div>
     )

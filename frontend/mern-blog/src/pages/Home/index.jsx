@@ -17,16 +17,17 @@ const Home = () => {
     const [ totalPage, setTotalPage ] = useState(0); 
 
     const getPostData = () => {
-        getPost(`?page=${currentPage}&limit=${limit}`).then(
-            result => { 
-                const totalPage = Math.ceil(result.total_data / limit)
+        getPost(`?page=${currentPage}&limit=${limit}`) 
+        .then((res) => { 
+            const totalPage = Math.ceil(res.total_data / limit)
 
-                setPost(result.data)  
-                setTotalPage(totalPage)
-                setCurrentPage(result.page)
-                setLimit(result.limit)
-            }
-        )
+            setPost(res.data)  
+            setTotalPage(totalPage)
+            setCurrentPage(res.page)
+            setLimit(res.limit)
+        }, (err) => {  
+            console.log("gagal get data ", err)
+        })
     }
 
     const handlePrevPage = () => {

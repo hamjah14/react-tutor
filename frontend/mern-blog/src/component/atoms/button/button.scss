@@ -14,4 +14,13 @@
         // background-color: #7d167d;
         background-color: #af472d;
     }
+    
+    &.disable {
+        background: #5fa9e7;
+        border: 1px solid #5fa9e7;
+
+        &:hover {
+            cursor: not-allowed;
+        }
+    }
 }
