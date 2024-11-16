@@ -1,11 +1,11 @@
 import React from 'react'
 
 // component
-import { Input, Button, Gap, Link } from '../../component';
+import { Input, Button, Gap, Link } from '../../../component';
 
 // style
 import './register.scss'
-import { RegisterBg } from '../../assets'
+import { RegisterBg } from '../../../assets'
 
 const Register = () => {
     return (

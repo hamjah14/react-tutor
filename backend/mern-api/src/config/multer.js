@@ -8,9 +8,9 @@ const fileStorage = multer.diskStorage({
         const month = date.getUTCMonth() + 1;
         let folderName = "./assets/images/" + year + "/" + month;
   
-        if (!fs.existsSync(folderName)){
-            fs.mkdirSync(folderName, { recursive: true });
-        }
+        // if (!fs.existsSync(folderName)){
+        //     fs.mkdirSync(folderName, { recursive: true });
+        // }
          
         folderName = "./assets/images/post";
         

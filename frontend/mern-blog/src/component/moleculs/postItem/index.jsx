@@ -10,7 +10,9 @@ import './postItem.scss';
 import { Button, Gap } from '../..';
 
 // redux
-import { ActionType } from '../../../config';
+import { ActionType } from '../../../config'; 
+import { actionSetPostData } from '../../../config/redux/action'
+import { deletePost } from '../../../config/service/api'
 
 export const PostItem = (props) => { 
     const navigate = useNavigate();
@@ -18,7 +20,14 @@ export const PostItem = (props) => {
 
     function DetailPostPage() {
         dispatch({type: ActionType.CHANGE_POSTID, payload: props.id})
+        dispatch(actionSetPostData(props.id));    
         navigate("/detail-post")
+    }
+     
+    function EditPostPage() { 
+        dispatch({type: ActionType.CHANGE_POSTID, payload: props.id})
+        dispatch(actionSetPostData(props.id));    
+        navigate('/edit-post');
     }
      
     const tanggal = new Date(props.data.createdAt).toISOString().split("T")[0]
@@ -29,11 +38,22 @@ export const PostItem = (props) => {
             <div className='post-detail'>
                 <p className='post-title'> {props.data.title_post} </p>
                 <p className='post-author'> {props.data.author_name}, { tanggal } </p>
+                
+                {/* <div className='author-wrapper'>  
+                    <div className='action-wrapper'>
+                        <p className='edit'>Edit</p> | <p className='delete'>Delete</p> 
+                    </div>
+                </div> */}
+                
                 <p className='post-content'> {props.data.body_post} </p>
                 <Gap height={20} />
 
-                <div className='button-action'>
-                    <Button title='View Detail' onClick={DetailPostPage}  />
+                <div className='action-wrapper'>
+                    <Button title='View' onClick={DetailPostPage}  />
+                    <Gap width={20} />
+                    <Button title='Edit' onClick={EditPostPage}  />
+                    <Gap width={20} />
+                    <Button title='Delete' onClick={() => props.delete(props.id)} />
                 </div>
             </div>
         </div>

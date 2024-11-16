@@ -20,8 +20,7 @@ const createPost = (req, res, next) => {
     }
     
     const { title_post, body_post, user_id, name } = req.body; 
-    let image = req.file.path.replace("assets\\images\\", "")
-    console.log("ver 2", image)
+    let image = req.file.path.replace("assets\\images\\", "") 
     // const date = new Date();
     // const created_at = date.toJSON().slice(0,19).replace("T",":") 
 
@@ -131,11 +130,11 @@ const updatePost = (req, res, next) => {
         }
  
         const { title_post, body_post, user_id, name } = req.body;
-        const image = req.file.path;
+        const image = req.file.path.replace("assets\\images\\", "")
 
         posting.title_post = title_post;
         posting.body_post = body_post;
-        posting.image = image; 
+        posting.thumb_image = image;  
         posting.author_id= user_id;
         posting.author_name= name;
         
@@ -178,7 +177,7 @@ const deletePost = (req, res, next) => {
 
         res.json({ 
             "status": 200, 
-            "message": "Successfully hapus gamabar",  
+            "message": "Successfully deleted data",  
         }) 
     }) 
     .catch( err => { 

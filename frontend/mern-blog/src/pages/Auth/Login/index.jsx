@@ -1,10 +1,10 @@
 import React from 'react'
 
 // component
-import { Input, Button, Gap, Link } from '../../component';
+import { Input, Button, Gap, Link } from '../../../component';
 
 // assets 
-import { LoginBg } from '../../assets'
+import { LoginBg } from '../../../assets'
 
 const Login = () => {
     return (

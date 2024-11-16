@@ -7,7 +7,7 @@ export const Textarea = ({ label, ...rest }) => {
     return (
         <div className='text-wrapper'>
             <p className='label'>{label}</p>
-            <textarea className='text-area' {...rest} />
+            <textarea className='text-area' {...rest} rows={3} />
         </div>
     )
 }

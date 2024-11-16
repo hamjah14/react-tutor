@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 // component
 import { PostItem } from '../../component/moleculs';
 import { Button, Gap } from '../../component'; 
-import { getPost } from '../../config/service/api'; 
+import { getPost, deletePost } from '../../config/service/api'; 
 
 // style
 import './home.scss';
@@ -17,7 +17,7 @@ const Home = () => {
     const [ totalPage, setTotalPage ] = useState(0); 
 
     const getPostData = () => {
-        getPost(`?page=${currentPage}&limit=${limit}`) 
+        getPost(currentPage, limit) 
         .then((res) => { 
             const totalPage = Math.ceil(res.total_data / limit)
 
@@ -46,9 +46,19 @@ const Home = () => {
         }
     }
 
+    const handleDeletePost = (id) => {  
+        deletePost(id) 
+        .then((res) => {
+            alert(res.data.message) 
+            getPostData()
+        }, (err) => {  
+            alert(err.response.data.message)
+        }) 
+    }
+
     useEffect(() => {   
         getPostData() 
-    },[currentPage])
+    },[currentPage, ])
 
     return (
         <div className='home-page-wrapper'>
@@ -62,7 +72,7 @@ const Home = () => {
             <div className='content-wrapper'> 
                 {
                     post.map(post => { 
-                        return <PostItem key={post._id} id={post._id} data={post} />
+                        return <PostItem key={post._id} id={post._id} data={post} delete={(id) => handleDeletePost(id)} />
                     })
                 }
             </div>

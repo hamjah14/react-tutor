@@ -11,16 +11,17 @@ import './detailPost.scss';
 import { Button, Gap } from '../../../component/atoms' 
 
 // redux
-import { actionSetPostData } from '../../../config/redux/action'
+import { ActionType } from '../../../config'
 
 const DetailPost = () => {
     const [ modalStatus, setModalStatus ] = useState(false) 
     const navigate = useNavigate();
     const dispatch = useDispatch();  
-    const { postId, postData, date } = useSelector(state => state.rootReducer);
+    const { postData, date } = useSelector(state => state.rootReducer);
 
     function HomePage() {
-        navigate('/');
+        dispatch({type: ActionType.CHANGE_POSTID, payload: null})
+        navigate(-1)
     }
 
     function EditPage() {
@@ -36,15 +37,8 @@ const DetailPost = () => {
     }
 
     useEffect(() => {   
-        if(postId !== null && postId !== undefined && postId !== "-"){ 
-            dispatch(actionSetPostData(postId));   
-        } else { 
-            setTimeout(()=>{
-                HomePage() 
-            }, 2000)
-        }
- 
-    },[postId])
+        console.log(postData)
+    },[])
 
     return (
         <div className='detail-post-wrapper'>
@@ -58,7 +52,7 @@ const DetailPost = () => {
                 <Gap width={20} />
                 <Button title='Edit' onClick={EditPage} />
                 <Gap width={20} />
-                <Button title='Delet' />
+                <Button title='Delete' />
             </div>
 
               {/* The Modal */}  

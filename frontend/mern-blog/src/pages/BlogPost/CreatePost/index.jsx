@@ -1,25 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 // component
-import { Input, Button, Upload, Textarea, Gap } from '../../../component/atoms'
-import { createPost } from '../../../config/service/api'; 
+import { Input, Button, Upload, Textarea, Gap } from '../../../component/atoms';
+import { createPost, updatePost } from '../../../config/service/api'; 
+import { actionSetPostData } from '../../../config/redux/action'
+import { ActionType } from '../../../config'
 
 // style
 import './createPost.scss'
 
-const CreatePost = () => {
+const CreatePost = () => {     
     const navigate = useNavigate();
+    const dispatch = useDispatch();  
+    const { postId, postData } = useSelector(state => state.rootReducer);
+    const [ isUpdate, setIsUpdate ] = useState(false) 
     const [ image, setImage ] = useState(null)
     const [ imagePrev, setImagePrev ] = useState(null) 
 
     const postFormik = useFormik({
         initialValues: {
-            title_post: '',
-            body_post: '',
-            thumb_image: '', 
+            title_post: postData.title_post || '77',
+            body_post: postData.body_post || '777',
+            thumb_image: '',
         },
         validationSchema: Yup.object({
             title_post: Yup.string() 
@@ -30,51 +36,84 @@ const CreatePost = () => {
             thumb_image: Yup.string() 
                     .required('Post Image post is required'),
         }),
+        enableReinitialize:true,
         onSubmit: (values) => submitPost(values),
     });
  
     const onImageUpload = (e) => { 
-        const file = e.target.files[0];
-        // postFormik.setFieldValue('thumb_image', value)
-        // postFormik.setValues({ ...postFormik.values, "thumb_image": 'shshs' }) 
-        // postFormik.setValues({ ...postFormik.values, ...{thumb_image: 'shshs'} })
+        const file = e.target.files[0]; 
         setImage(file)
         setImagePrev(URL.createObjectURL(file))  
     }
 
-    const submitPost = (values) => {    
+    const submitPost = (values) => {  
         const formDdata = new FormData();
         formDdata.append('title_post', values["title_post"])
         formDdata.append('body_post', values["body_post"])
         formDdata.append('image', image)
         formDdata.append('user_id', '123')
         formDdata.append('name', 'Hamjah')
-            
-        // createPost(formDdata)
-        // .then((res) => {
-        //     alert(res.data.message) 
+           
+        if(isUpdate === false){  
+            createPost(formDdata)
+            .then((res) => {
+                alert(res.data.message) 
+
+                setTimeout(()=>{
+                    clearData()
+                    navigate("/");
+                }, 1500)
+            }, (err) => {  
+                alert(err.response.data.message)
+            })
+        } else { 
+            if(postId !== null && postId !== undefined && postId !== "-"){ 
+                updatePost(postId, formDdata)
+                .then((res) => {
+                    alert(res.data.message) 
+
+                    setTimeout(()=>{
+                        clearData()
+                        navigate("/");
+                    }, 1500)
+                }, (err) => {  
+                    alert(err.response.data.message)
+                })
+            } else {
+                alert("Iddata kosong")
+            }
+        }
  
-        //     if(res.data.code === "201"){
-        //         postFormik.resetForm() 
-
-        //         setTimeout(()=>{
-        //             navigate("/");
-        //         }, 3000)
-        //     }
-        // }, (err) => {  
-        //     console.log("hasil 2", err.message)
-        // })
-
         postFormik.setSubmitting(false) 
     }
      
-    const homePage = () => {
-        navigate("/");
+    const homePage = () => { 
+        clearData()
+        navigate(-1)
+    }
+
+    const clearData = () => {   
+        postFormik.resetForm() 
+        setIsUpdate(false)
+        setImage(null)
+        setImagePrev(null) 
+        dispatch({type: ActionType.CHANGE_POSTID, payload: null})   
+        dispatch({type: ActionType.SET_POST_DATA, payload: {}}) 
     }
     
+    useEffect(() => {   
+        if(postId !== null && postId !== undefined && postId !== "-"){  
+            setIsUpdate(true)  
+
+            if(postData.thumb_image !== undefined){ 
+                setImagePrev("http://localhost:4000/images/" + postData.thumb_image)  
+            }
+        } 
+    },[postId, postData])
+
     return (
         <div className='create-post-post'>
-            <p className='title'>Create New Post</p>
+            <p className='title'>{isUpdate ? 'Update' : 'Create New'} Post {postData.title_post}</p>
         
             <form onSubmit={postFormik.handleSubmit}> 
                 <Input   
@@ -127,7 +166,7 @@ const CreatePost = () => {
                     <Button title='Cancel' onClick={homePage} />
                     <Gap width={20} />
                     <Button 
-                        title='Save' 
+                        title={isUpdate ? 'Update' : 'Save'} 
                         type="submit"  
                         disabled={!postFormik.isValid || postFormik.isSubmitting || (Object.keys(postFormik.touched).length === 0 && postFormik.touched.constructor === Object)}
                     />

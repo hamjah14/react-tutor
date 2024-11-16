@@ -4,8 +4,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // pages
 import MainApp from '../../pages/MainApp'
-import Login from '../../pages/Login'
-import Register from '../../pages/Register'
+import Login from '../../pages/Auth/Login'
+import Register from '../../pages/Auth/Register'
 
 const Routing = () => {
     return (

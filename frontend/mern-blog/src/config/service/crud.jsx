@@ -8,7 +8,8 @@ const Create = (path, data) => {
         axios.post(url, data)
         .then((res) => {
             resolve(res)
-        }, (err) => { 
+        })
+        .catch((err) => { 
             reject(err)
         })
     })
@@ -38,8 +39,7 @@ const Update = (path, id, data) => {
         axios.put(url, data)
         .then((res) => {
             resolve(res)
-        }, (err) => {
-            console.log('err ', err)
+        }, (err) => { 
             reject(err)
         })
     })
