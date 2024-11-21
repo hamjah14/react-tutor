@@ -3,15 +3,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { confirmAlert, Alert } from 'react-confirm-alert';
 
 // component
 import { Input, Button, Upload, Textarea, Gap } from '../../../component/atoms';
-import { createPost, updatePost } from '../../../config/service/api'; 
-import { actionSetPostData } from '../../../config/redux/action'
+import { createPost, updatePost } from '../../../config/service/api';  
 import { ActionType } from '../../../config'
 
 // style
 import './createPost.scss'
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const CreatePost = () => {     
     const navigate = useNavigate();
@@ -23,8 +24,8 @@ const CreatePost = () => {
 
     const postFormik = useFormik({
         initialValues: {
-            title_post: postData.title_post || '77',
-            body_post: postData.body_post || '777',
+            title_post: postData.title_post || '',
+            body_post: postData.body_post || '',
             thumb_image: '',
         },
         validationSchema: Yup.object({
@@ -48,42 +49,58 @@ const CreatePost = () => {
 
     const submitPost = (values) => {  
         const formDdata = new FormData();
+        const aksi = isUpdate ? 'update' : 'save'
         formDdata.append('title_post', values["title_post"])
         formDdata.append('body_post', values["body_post"])
         formDdata.append('image', image)
         formDdata.append('user_id', '123')
         formDdata.append('name', 'Hamjah')
-           
-        if(isUpdate === false){  
-            createPost(formDdata)
-            .then((res) => {
-                alert(res.data.message) 
 
-                setTimeout(()=>{
-                    clearData()
-                    navigate("/");
-                }, 1500)
-            }, (err) => {  
-                alert(err.response.data.message)
-            })
-        } else { 
-            if(postId !== null && postId !== undefined && postId !== "-"){ 
-                updatePost(postId, formDdata)
-                .then((res) => {
-                    alert(res.data.message) 
+        confirmAlert({
+            title: 'Confirm to ' + aksi +' post',
+            message: 'Are you sure to ' + aksi +' this post?',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => { 
+                        if(isUpdate === false){  
+                            createPost(formDdata)
+                            .then((res) => {
+                                alert(res.data.message) 
 
-                    setTimeout(()=>{
-                        clearData()
-                        navigate("/");
-                    }, 1500)
-                }, (err) => {  
-                    alert(err.response.data.message)
-                })
-            } else {
-                alert("Iddata kosong")
-            }
-        }
- 
+                                setTimeout(()=>{
+                                    clearData()
+                                    navigate("/");
+                                }, 1500)
+                            }, (err) => {  
+                                alert(err.response.data.message)
+                            })
+                        } else { 
+                            if(postId !== null && postId !== undefined && postId !== "-"){ 
+                                updatePost(postId, formDdata)
+                                .then((res) => {
+                                    alert(res.data.message) 
+
+                                    setTimeout(()=>{
+                                        clearData()
+                                        navigate("/");
+                                    }, 1500)
+                                }, (err) => {  
+                                    alert(err.response.data.message)
+                                })
+                            } else {
+                                alert("Iddata kosong")
+                            }
+                        }
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => ''
+                }
+            ]
+        });
+
         postFormik.setSubmitting(false) 
     }
      
@@ -113,7 +130,7 @@ const CreatePost = () => {
 
     return (
         <div className='create-post-post'>
-            <p className='title'>{isUpdate ? 'Update' : 'Create New'} Post {postData.title_post}</p>
+            <p className='title'>{isUpdate ? 'Update' : 'Create New'} Post</p>
         
             <form onSubmit={postFormik.handleSubmit}> 
                 <Input   

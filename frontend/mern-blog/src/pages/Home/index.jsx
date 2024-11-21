@@ -1,6 +1,7 @@
 // libraries
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { confirmAlert } from 'react-confirm-alert';
 
 // component
 import { PostItem } from '../../component/moleculs';
@@ -9,6 +10,7 @@ import { getPost, deletePost } from '../../config/service/api';
 
 // style
 import './home.scss';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 const Home = () => {
     const [ currentPage, setCurrentPage ] = useState(1); 
@@ -46,14 +48,29 @@ const Home = () => {
         }
     }
 
-    const handleDeletePost = (id) => {  
-        deletePost(id) 
-        .then((res) => {
-            alert(res.data.message) 
-            getPostData()
-        }, (err) => {  
-            alert(err.response.data.message)
-        }) 
+    const handleDeletePost = (id) => {   
+        confirmAlert({
+            title: 'Confirm to delete data',
+            message: 'Are you sure to delete this post?',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: () => { 
+                        deletePost(id) 
+                        .then((res) => {
+                            alert(res.data.message) 
+                            getPostData()
+                        }, (err) => {  
+                            alert(err.response.data.message)
+                        }) 
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => ''
+                }
+            ]
+        });
     }
 
     useEffect(() => {   

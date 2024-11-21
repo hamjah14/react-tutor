@@ -11,8 +11,7 @@ import { Button, Gap } from '../..';
 
 // redux
 import { ActionType } from '../../../config'; 
-import { actionSetPostData } from '../../../config/redux/action'
-import { deletePost } from '../../../config/service/api'
+import { actionSetPostData } from '../../../config/redux/action' 
 
 export const PostItem = (props) => { 
     const navigate = useNavigate();
