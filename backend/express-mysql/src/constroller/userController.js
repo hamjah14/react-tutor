@@ -22,19 +22,36 @@ const getUser = (req, res, next) => {
 
     next();
 }
-
  
-
 const putUser = (req, res, next) => {
     res.status(200).json({ 
         "message":"Successfully update data", 
+        "data": {
+            "id": req.params, 
+        }
     })
 }
  
 const deleteUser = (req, res, next) => {
     res.status(200).json({ 
         "message":"Successfully deleted data", 
+        "data": {
+            "id": req.params, 
+        }
     })
 }
 
-module.exports = { createUser, getUser, putUser, deleteUser }
+const getUserById = (req, res, next) => {
+    res.status(200).json({ 
+        "message":"Successfully added data", 
+        "data": {
+            "name": "Hamjahr",
+            "email": "hamham@gmail.com",
+            "address": "Jakarta 45", 
+        }
+    })
+
+    next();
+}
+
+module.exports = { createUser, getUser, putUser, deleteUser, getUserById }
