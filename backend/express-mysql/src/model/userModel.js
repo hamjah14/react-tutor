@@ -1,21 +1,31 @@
 const dbPool = require("../config/database")
  
+const createUser = (body) => {
+    const sqlQuery = `  INSERT INTO users 
+                            (name, address, email) 
+                        VALUES 
+                            ('${body.user_name}', '${body.user_address}', '${body.user_email}')`;
+
+    return dbPool.execute(sqlQuery); 
+}
+
 const getUsers = () => {
     const sqlQuery = "SELECT * FROM users";
     return dbPool.execute(sqlQuery); 
 }
 
-module.exports = { getUsers }
+const updateUser = (id, body) => {
+    const sqlQuery = ` UPDATE users 
+                       SET name = '${body.user_name}', address = '${body.user_address}', email = '${body.user_email}'
+                       WHERE id = ${id}`;
 
-// dbPool.execute("SELECT * FROM users", (err, rows) => {
-//     if(err){
-//         res.json({
-//             "message": "connection failed"
-//         })
-//     }
+    return dbPool.execute(sqlQuery); 
+}
 
-//     res.json({
-//             "message": "connection success",
-//             "data": rows,
-//     }) 
-// })
+const deleteteUser = (id) => {
+    const sqlQuery = ` DELETE FROM users WHERE id = ${id}`;
+
+    return dbPool.execute(sqlQuery); 
+}
+
+module.exports = { getUsers, createUser, updateUser, deleteteUser } 
