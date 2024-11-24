@@ -1,25 +1,24 @@
 const { validationResult } = require("express-validator");
 const UserModel = require("../model/userModel");
 
-const createUser = (req, res, next) => {
-    console.log(req.body);
-
+const createUser = (req, res, next) => { 
     res.status(200).json({ 
         "message":"Successfully get data", 
         "data": req.body
     })
 }
 
-const getUser = (req, res, next) => {
-    res.status(200).json({ 
-        "message":"Successfully added data",
-        "data": {
-            "name": "Hamjahr",
-            "email": "hamham@gmail.com",
-            "address": "Jakarta 45", 
-        }
-    })
-
+const getUser = async (req, res, next) => {
+    try {
+        const [data] = await UserModel.getUsers()
+        res.status(200).json({ 
+            "message":"Successfully added data",
+            "data": data
+        })
+    } catch (err) {
+        res.status(500).json(err)
+    }
+    
     next();
 }
  

@@ -3,9 +3,14 @@ const app = express();
 
 // routes
 const userRoute = require("./src/route/userRoute")
- 
+
 app.use(express.json());
 app.use("/v1/user", userRoute);
+
+// app.use("/v1/user", (req, res) => {
+    
+// });
+
  
 app.listen(4001, () => {
     console.log("Server berhasil dijalankan");
