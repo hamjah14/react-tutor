@@ -14,14 +14,19 @@ import { Button, Gap } from '../../../component/atoms'
 import { ActionType } from '../../../config'
 
 const DetailPost = () => {
-    const [ modalStatus, setModalStatus ] = useState(false) 
+    const [ modalStatus, setModalStatus ] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();  
     const { postData, date } = useSelector(state => state.rootReducer);
 
-    function HomePage() {
-        dispatch({type: ActionType.CHANGE_POSTID, payload: null})
+    function HomePage() { 
+        clearData()
         navigate(-1)
+    }
+
+    const clearData = () => {       
+        dispatch({type: ActionType.CHANGE_POSTID, payload: null})   
+        dispatch({type: ActionType.SET_POST_DATA, payload: {}}) 
     }
 
     function EditPage() {
@@ -42,7 +47,7 @@ const DetailPost = () => {
 
     return (
         <div className='detail-post-wrapper'>
-            <img className='img-cover' src={ "http://localhost:4000/images/" + postData.thumb_image } alt='' onClick={openLightbox} />
+            <img className='img-cover' src={ "http://localhost:4001/v1/images/" + postData.thumb_image } alt='' onClick={openLightbox} />
             <p className='post-title'>{postData.title_post}</p>
             <p className='post-author'>{postData.author_name}, {date}</p>
             <p className='post-body'>{postData.body_post}</p>
@@ -66,7 +71,7 @@ const DetailPost = () => {
             {
                 modalStatus && (
                     <Lightbox 
-                        medium={ "http://localhost:4000/images/" + postData.thumb_image }  
+                        medium={ "http://localhost:4001/v1/images/" + postData.thumb_image }  
                         alt={postData.title_post} 
                         onClose={closeLightbox}
                     />

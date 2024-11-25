@@ -11,8 +11,8 @@ export const actionSetPostData = (id) => async ( dispatch ) => {
  
     dispatch({type: ActionType.SET_POST_DATA, payload: data}) 
      
-    if(data.createdAt !== undefined){ 
-        let date = actionSetDate(data.createdAt.slice(0,10))
+    if(data.created_at !== undefined){ 
+        let date = actionSetDate(data.created_at.slice(0,10))
         dispatch(date) 
     }     
 };

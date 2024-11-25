@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
         const time = new Date().getTime();
         const fileName = file.originalname; 
 
-        cb(null, time + "-" + fileName);
+        cb(null, "/" + time + "-" + fileName);
     }
 })
  

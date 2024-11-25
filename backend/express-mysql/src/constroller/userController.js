@@ -13,7 +13,7 @@ const createUser = async (req, res, next) => {
     try {
         await UserModel.createUser(req.body)
         res.status(201).json({ 
-            "message":"Successfully get data", 
+            "message":"Successfully created data", 
             "data": req.body
         })
     } catch (err) {

@@ -2,21 +2,17 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors"); 
-  
-const upload = require('./src/config/multer');
-const userRoute = require("./src/route/userRoute")
+   
+const userRoute = require("./src/route/userRoute");
+const postRoutes = require("./src/route/postRoute");
 
 app.use(cors()); 
 app.use(express.json());
+ 
+app.use("/v1/images/post", express.static("public/images/post/")); 
 app.use("/v1/user", userRoute);
+app.use("/v1/blog", postRoutes);
   
-app.use("/images/post", express.static("public/images/post/"));
-app.post("/upload", upload.single("file"), (req, res) => {
-    res.status(201).json({
-        "message": "Upload berhasil"
-    })
-});
-
 // error handling yang tidak di-handle fungsi
 app.use((error, req, res, next) => {
     const status = error.status || 500

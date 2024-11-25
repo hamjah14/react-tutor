@@ -59,10 +59,12 @@ const Home = () => {
                         deletePost(id) 
                         .then((res) => {
                             alert(res.data.message) 
-                            getPostData()
+                            // getPostData()
                         }, (err) => {  
                             alert(err.response.data.message)
-                        }) 
+                        })
+                        
+                        getPostData()
                     }
                 },
                 {
@@ -89,7 +91,7 @@ const Home = () => {
             <div className='content-wrapper'> 
                 {
                     post.map(post => { 
-                        return <PostItem key={post._id} id={post._id} data={post} delete={(id) => handleDeletePost(id)} />
+                        return <PostItem key={post.id} id={post.id} data={post} delete={(id) => handleDeletePost(id)} />
                     })
                 }
             </div>

@@ -1,7 +1,8 @@
 // libraries
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { Lightbox } from "react-modal-image";
  
 // style
 import './postItem.scss';
@@ -14,6 +15,7 @@ import { ActionType } from '../../../config';
 import { actionSetPostData } from '../../../config/redux/action' 
 
 export const PostItem = (props) => { 
+    const [ modalStatus, setModalStatus ] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch(); 
 
@@ -28,22 +30,24 @@ export const PostItem = (props) => {
         dispatch(actionSetPostData(props.id));    
         navigate('/edit-post');
     }
-     
-    const tanggal = new Date(props.data.createdAt).toISOString().split("T")[0]
+      
+    function openLightbox() {
+        setModalStatus(true);
+    }
+ 
+    function closeLightbox() {
+        setModalStatus(false);
+    }
+
+    const tanggal = new Date(props.data.created_at).toISOString().split("T")[0]
   
     return (
         <div className='post-item'>
-            <img className='image-thumb' src={ "http://localhost:4000/images/" + props.data.thumb_image } alt='' />
+            <img className='image-thumb' src={ "http://localhost:4001/v1/images/" + props.data.thumb_image } alt='' onClick={openLightbox} />
             <div className='post-detail'>
                 <p className='post-title'> {props.data.title_post} </p>
                 <p className='post-author'> {props.data.author_name}, { tanggal } </p>
-                
-                {/* <div className='author-wrapper'>  
-                    <div className='action-wrapper'>
-                        <p className='edit'>Edit</p> | <p className='delete'>Delete</p> 
-                    </div>
-                </div> */}
-                
+                 
                 <p className='post-content'> {props.data.body_post} </p>
                 <Gap height={20} />
 
@@ -55,6 +59,16 @@ export const PostItem = (props) => {
                     <Button title='Delete' onClick={() => props.delete(props.id)} />
                 </div>
             </div>
+
+            {
+                modalStatus && (
+                    <Lightbox 
+                        medium={ "http://localhost:4001/v1/images/" + props.data.thumb_image }  
+                        alt={props.data.title_post} 
+                        onClose={closeLightbox}
+                    />
+                )
+            }
         </div>
     )
 } 

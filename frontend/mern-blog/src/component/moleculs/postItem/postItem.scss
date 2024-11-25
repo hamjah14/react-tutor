@@ -1,5 +1,5 @@
 .post-item {
-    width: calc(50% - 10%);
+    width: calc(50% - 5%);
     height: 350px;
     border-radius: 8px;
     margin-top: 20px;
@@ -63,10 +63,10 @@
             margin-top: 18px;
             font-size: 15px;
             color: 353535;
-            height: 110px;
+            max-height: 110px;
+            overflow:hidden;
         }
-
-        
+ 
         .action-wrapper {
             width: 300px;
             margin-left: auto;

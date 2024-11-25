@@ -123,7 +123,7 @@ const CreatePost = () => {
             setIsUpdate(true)  
 
             if(postData.thumb_image !== undefined){ 
-                setImagePrev("http://localhost:4000/images/" + postData.thumb_image)  
+                setImagePrev("http://localhost:4001/v1/images/" + postData.thumb_image)  
             }
         } 
     },[postId, postData])
